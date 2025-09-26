@@ -1,0 +1,74 @@
+@import "./colors.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-size: 14px;
+}
+
+window#waybar {
+  background: @background;
+}
+
+#custom-cachy:hover,
+#cpu:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#pulseaudio.microphone:hover,
+#pulseaudio.sink-muted:hover {
+  opacity: 0.6;
+}
+
+#custom-cachy,
+#cpu,
+#clock,
+#mpris,
+#custom-menu,
+#tray,
+#network,
+#bluetooth,
+#pulseaudio,
+#pulseaudio.microphone,
+#backlight,
+#battery,
+#custom-powermenu {
+  color: @foreground;
+  padding: 0 8px;
+  margin: 0 4px;
+}
+
+#workspaces button {
+  color: @color1;
+  padding: 0;
+}
+
+#workspaces button.active {
+  color: @foreground;
+}
+
+#mpris.playing { color: @color2; }
+#mpris.paused { color: @color3; }
+#mpris.stopped { color: @color1; }
+
+#network.disabled { color: @color1; }
+#network.wifi { color: @color2; }
+#network.ethernet { color: @color3; }
+#bluetooth.disabled { color: @color1; }
+#bluetooth.connected { color: @color4; }
+
+#pulseaudio.sink-muted:not(.microphone) { color: @color3; }
+#pulseaudio.microphone.source-muted { color: @color1; }
+
+#battery.plugged,
+#battery.full { color: @color4; }
+#battery.charging { color: @color2; }
+#battery.warning { color: @color3; }
+#battery.plugordie { color: @color1; }
+
+tooltip *,
+tooltip {
+  color: @foreground;
+  text-shadow: none;
+  margin: 2px;
+  background: @background;
+}

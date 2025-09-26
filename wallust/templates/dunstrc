@@ -1,0 +1,89 @@
+[global]
+# Monitor and positioning
+monitor = 0
+follow = keyboard
+origin = top-right
+scale = 0
+
+# Dimensions and spacing
+width = (300, 800)
+height = (100, 400)
+gap_size = 10
+padding = 10
+horizontal_padding = 10
+text_icon_padding = 20
+
+# Visual appearance
+corner_radius = 0
+frame_width = 2
+separator_height = 27
+
+# Typography
+font = JetBrainsMono Nerd Font Propo 11
+line_height = 0
+text_icon_padding = 8
+alignment = left
+
+# Behavior
+indicate_hidden = yes
+stack_duplicates = true
+hide_duplicate_count = false
+ignore_dbusclose = false
+sticky_history = yes
+history_length = 20
+always_run_script = true
+startup_notification = false
+enable_posix_regex = true
+
+# Content formatting
+markup = full
+format = "<b>%a</b>\n%s\n%b"
+word_wrap = yes
+ellipsize = middle
+ignore_newline = no
+show_age_threshold = 60
+idle_threshold = 120
+
+# Icons
+icon_position = left
+icon_size = 128
+icon_theme = "Colloid-Dark"
+enable_recursive_icon_lookup = true
+
+# Progress bar
+progress_bar = true
+progress_bar_height = 10
+progress_bar_frame_width = 1
+progress_bar_min_width = 150
+progress_bar_max_width = 400
+
+# Mouse interaction
+mouse_left_click = close_current
+mouse_middle_click = do_action, close_current
+mouse_right_click = close_all
+
+# Colors
+frame_color = "{{color4}}"
+highlight = "{{color5}}"
+separator_color = "{{foreground}}"
+
+[experimental]
+per_monitor_dpi = false
+
+[urgency_low]
+timeout = 4
+background = "{{background}}"
+foreground = "{{foreground}}"
+frame_color = "{{color3}}"
+
+[urgency_normal]
+timeout = 6
+background = "{{background}}"
+foreground = "{{foreground}}"
+frame_color = "{{color2}}"
+
+[urgency_critical]
+timeout = 0
+background = "{{background}}"
+foreground = "{{foreground}}"
+frame_color = "{{color1}}"

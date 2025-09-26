@@ -1,0 +1,140 @@
+{
+  "group/extras": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 400,
+      "children-class": "extras",
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/menu", "tray"]
+  },
+  "custom/cachy": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "alacritty",
+    "on-click-right": "kitty"
+  },
+  "niri/workspaces": {
+    "on-click": "activate"
+  },
+  "cpu": {
+    "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
+    "interval": 1,
+    "tooltip": true,
+    "on-click": "alacritty -e btm"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S %p}",
+    "format-alt": "{:%a, %b %d}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+  "mpris": {
+    "format": "{status_icon}",
+    "format-paused": "{status_icon}",
+    "status-icons": {
+      "playing": "󰐊",
+      "paused": "󰏤",
+      "stopped": "󰓛"
+    },
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "tooltip": true,
+    "tooltip-format": "{title}"
+  },
+  "custom/menu": {
+    "format": "",
+    "tooltip": false
+  },
+  "tray": {
+    "spacing": 12,
+    "reverse-direction": true,
+    "icon-size": 16,
+    "show-passive-items": false
+  },
+  "network": {
+    "format-wifi": "wifi: {essid}",
+    "format-ethernet": "eth: {ipaddr}",
+    "format-disconnected": "wifi: disconnected",
+    "format-disabled": "wifi: disabled",
+    "interval": 5,
+    "tooltip-format": "{essid}\t{gwaddr}",
+    "on-click": "rfkill toggle wifi",
+    "on-click-right": "nm-connection-editor",
+    "tooltip": true,
+    "max-length": 20
+  },
+  "bluetooth": {
+    "interval": 5,
+    "format-on": "bt: on",
+    "format-off": "bt: off",
+    "format-disabled": "bt: disabled",
+    "format-connected": "bt: {device_alias}",
+    "tooltip": true,
+    "tooltip-format": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_address} | Battery: {device_battery_percentage}%",
+    "on-click": "rfkill toggle bluetooth",
+    "on-click-right": "blueman-manager"
+  },
+  "pulseaudio#microphone": {
+    "format": "mic: {format_source}",
+    "format-source": "on",
+    "format-source-muted": "mute",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "interval": 2,
+    "format": "vol: {volume}%",
+    "format-muted": "vol: mute",
+    "on-click-right": "pavucontrol",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "reverse-scrolling": true,
+    "tooltip": true,
+    "tooltip-format": "Volume: {volume}%\n{desc}",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "led: {percent}%",
+    "reverse-scrolling": true,
+    "smooth-scrolling-threshold": 0.1,
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 5,
+    "states": {
+      "full": 100,
+      "notfull": 99,
+      "warning": 20,
+      "critical": 10,
+      "plugordie": 5
+    },
+    "format-charging": "bat: {capacity}% chg",
+    "format-full": "bat: {capacity}% full",
+    "format-notfull": "bat: {capacity}% dc",
+    "format-plugged": "bat: {capacity}% ac",
+    "format-plugordie": "bat: {capacity}% ggs",
+    "format-warning": "bat: {capacity}% low",
+    "format-critical": "bat: {capacity}% crit",
+    "tooltip": false
+  },
+  "custom/powermenu": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/rofi/powermenu/powermenu.sh"
+  }
+}

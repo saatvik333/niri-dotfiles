@@ -1,0 +1,33 @@
+{
+  "reload_style_on_change": true,
+  "toggle": true,
+  "layer": "top",
+  "position": "top",
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 0,
+  "include": [
+    "~/.config/waybar/modules.json"
+  ],
+  "modules-left": [
+    "custom/cachy",
+    "cpu",
+    "niri/workspaces"
+  ],
+  "modules-center": [
+    "clock",
+    "mpris"
+  ],
+  "modules-right": [
+    "group/extras",
+    "network",
+    "bluetooth",
+    "pulseaudio#microphone",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "custom/powermenu"
+  ]
+}

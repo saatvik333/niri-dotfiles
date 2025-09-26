@@ -1,0 +1,419 @@
+output "eDP-1" {
+    mode "1920x1080@60.024" 
+    scale 1
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            options "caps:escape"
+        }
+    }
+
+    touchpad {
+        tap 
+        natural-scroll
+    }
+
+    focus-follows-mouse
+    workspace-auto-back-and-forth
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+cursor {
+    hide-when-typing
+}
+
+overview {
+    backdrop-color "#1E1E2E"
+    workspace-shadow {
+        off
+    }
+}
+
+layer-rule {
+    match namespace="^swww-daemon$"
+    place-within-backdrop true
+}
+
+binds {
+    // Shortcuts Panel
+    MOD+SHIFT+ESCAPE                    { show-hotkey-overlay; }
+
+    // Application Shortcuts
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
+    MOD+A                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "$HOME/.config/rofi/launcher/launcher.sh"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+    MOD+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
+    MOD+BACKSPACE                       hotkey-overlay-title="Power Menu: rofi" { spawn-sh "$HOME/.config/rofi/powermenu/powermenu.sh"; }
+
+    // Media Keys
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh volume_up"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh volume_down"; }
+    XF86MonBrightnessUp                 allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh brightness_up"; }
+    XF86MonBrightnessDown               allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh brightness_down"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh volume_mute"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh mic_mute"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh next_track"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh play_pause"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh play_pausse"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh prev_track"; }
+
+    // Window Management
+    MOD+Q                               { close-window; }
+
+    // Window Movement and Focus
+    MOD+LEFT                            { focus-column-left; }
+    MOD+H                               { focus-column-left; }
+    MOD+RIGHT                           { focus-column-right; }
+    MOD+L                               { focus-column-right; }
+    MOD+UP                              { focus-window-up; }
+    MOD+K                               { focus-workspace-up; }
+    MOD+DOWN                            { focus-window-down; }
+    MOD+J                               { focus-workspace-down; }
+
+    // Move windows within workspace
+    MOD+SHIFT+LEFT                      { move-column-left; }
+    MOD+SHIFT+H                         { move-column-left; }
+    MOD+SHIFT+RIGHT                     { move-column-right; }
+    MOD+SHIFT+L                         { move-column-right; }
+    MOD+SHIFT+UP                        { move-window-up; }
+    MOD+SHIFT+K                         { move-column-to-workspace-up; }
+    MOD+SHIFT+DOWN                      { move-window-down; }
+    MOD+SHIFT+J                         { move-column-to-workspace-down; }
+    
+    // Move to workspace edges
+    MOD+SHIFT+HOME                      { move-column-to-first; }
+    MOD+SHIFT+END                       { move-column-to-last; }
+
+    MOD+HOME                            { focus-column-first; }
+    MOD+END                             { focus-column-last; }
+
+    // Monitor Management - Move between monitors
+    MOD+CTRL+LEFT                       { focus-monitor-left; }
+    MOD+CTRL+RIGHT                      { focus-monitor-right; }
+    MOD+CTRL+UP                         { focus-monitor-up; }
+    MOD+CTRL+DOWN                       { focus-monitor-down; }
+
+    // Move windows to different monitors
+    MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+
+    // Workspace Management
+    MOD+ESCAPE                          hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
+    MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-up; }
+    
+    // Move windows to different workspaces - using wheel matches K/J pattern
+    MOD+SHIFT+WHEELSCROLLDOWN           cooldown-ms=150 { move-column-to-workspace-down; }
+    MOD+SHIFT+WHEELSCROLLUP             cooldown-ms=150 { move-column-to-workspace-up; }
+
+    // Column navigation with mouse
+    MOD+WHEELSCROLLRIGHT                { focus-column-right; }
+    MOD+WHEELSCROLLLEFT                 { focus-column-left; }
+    MOD+CTRL+WHEELSCROLLRIGHT           { move-column-right; }
+    MOD+CTRL+WHEELSCROLLLEFT            { move-column-left; }
+
+    // Numbered Workspaces
+    MOD+1                               { focus-workspace 1; }
+    MOD+2                               { focus-workspace 2; }
+    MOD+3                               { focus-workspace 3; }
+    MOD+4                               { focus-workspace 4; }
+    MOD+5                               { focus-workspace 5; }
+    MOD+6                               { focus-workspace 6; }
+    MOD+7                               { focus-workspace 7; }
+    MOD+8                               { focus-workspace 8; }
+    MOD+9                               { focus-workspace 9; }
+
+    // Move windows to numbered workspaces with MOD+SHIFT
+    MOD+SHIFT+1                         { move-column-to-workspace 1; }
+    MOD+SHIFT+2                         { move-column-to-workspace 2; }
+    MOD+SHIFT+3                         { move-column-to-workspace 3; }
+    MOD+SHIFT+4                         { move-column-to-workspace 4; }
+    MOD+SHIFT+5                         { move-column-to-workspace 5; }
+    MOD+SHIFT+6                         { move-column-to-workspace 6; }
+    MOD+SHIFT+7                         { move-column-to-workspace 7; }
+    MOD+SHIFT+8                         { move-column-to-workspace 8; }
+    MOD+SHIFT+9                         { move-column-to-workspace 9; }
+
+    MOD+TAB                             { focus-workspace-previous; }
+    
+    // Quick window movement shortcuts - removed conflicting bindings
+    MOD+SHIFT+SPACE                     { toggle-window-floating; }
+
+    // Layout Controls 
+    MOD+C                               { center-column; }
+    MOD+CTRL+C                          { center-visible-columns; }
+    MOD+BRACKETLEFT                     { set-column-width "-10%"; }
+    MOD+BRACKETRIGHT                    { set-column-width "+10%"; }
+    MOD+SHIFT+BRACKETLEFT               { set-window-height "-10%"; }
+    MOD+SHIFT+BRACKETRIGHT              { set-window-height "+10%"; }
+    
+    // Window resizing with mouse
+    MOD+CTRL+WHEELSCROLLDOWN            { set-window-height "-5%"; }
+    MOD+CTRL+WHEELSCROLLUP              { set-window-height "+5%"; }
+
+    // Window Modes 
+    MOD+T                               { toggle-window-floating; }
+    MOD+F                               { fullscreen-window; }
+    MOD+W                               { toggle-column-tabbed-display; }
+    MOD+M                               { maximize-column; }
+
+    // Screenshot Shortcuts
+    MOD+S                               { screenshot; }
+    MOD+SHIFT+S                         { screenshot-screen; }
+    MOD+CTRL+S                          { screenshot-window; }
+
+    // Application Restarts
+    MOD+ALT+W                           { spawn "sh" "-c" "pgrep -x waybar >/dev/null && killall waybar || waybar &"; }
+    // use with toggle in waybar (doens't restart if not running)
+    // MOD+ALT+W                           { spawn "killall" "-SIGUSR1" "waybar"; }
+}
+
+// Startup Applications
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "waybar"
+
+prefer-no-csd
+screenshot-path "$HOME/Pictures/Screenshots/"
+
+// Layout Settings
+layout {
+    gaps 0
+    center-focused-column "on-overflow"
+    background-color "transparent"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    focus-ring {
+        width 0
+        active-color "#F38BA8"
+    }
+    
+    insert-hint {
+        // on
+        color "#F38BA850"
+    }
+
+    struts {}
+
+}
+
+// Animation Settings
+animations {
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    window-close {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 300
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+}
+
+// Window Rules
+// Application-specific rules
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"code"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"firefox$"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"obsidian$"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"protonvpn-app"#
+    open-floating true
+    min-width 400
+    min-height 600
+}
+
+// File dialogs - Open/Save/Select
+window-rule {
+    match title=r#".*(Open|Save|Select).*"#
+    open-floating true
+    default-column-width { proportion 0.0; }
+    min-width 600
+    min-height 800
+    max-width 800
+    max-height 1000
+}
+
+window-rule {
+    match title=r#".*File.*"#
+    open-floating true
+    default-column-width { proportion 0.0; }
+    min-width 600
+    min-height 800
+    max-width 800
+    max-height 1000
+}
+
+window-rule {
+    match app-id=r#"org\.gtk\.FileChooserDialog"#
+    open-floating true
+    default-column-width { proportion 0.0; }
+    min-width 600
+    min-height 800
+    max-width 800
+    max-height 1000
+}
+
+// System dialogs
+window-rule {
+    match title=r#".*(Dialog|Properties|Preferences|Settings).*"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"zenity"#
+    open-floating true
+}
+
+// Authentication dialogs
+window-rule {
+    match app-id=r#"org\.kde\.polkit-kde-authentication-agent-1"#
+    open-floating true
+}
+
+window-rule {
+    match title=r#".*Authentication.*"#
+    open-floating true
+}
+
+// Password managers
+window-rule {
+    match app-id=r#"org\.keepassxc\.KeePassXC"# title=r#".*Auto-Type.*"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Bitwarden"# title=r#".*unlock.*"#
+    open-floating true
+}
+
+// Notification and system utilities
+window-rule {
+    match app-id=r#"nm-connection-editor"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"blueman-manager"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"pavucontrol"#
+    open-floating true
+}
+
+// Calculator and small utilities
+window-rule {
+    match app-id=r#"org\.gnome\.Calculator"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"gnome-calendar"# title=r#".*Event.*"#
+    open-floating true
+}
+
+// Steam dialogs
+window-rule {
+    match app-id=r#"steam"# title=r#".*(Friends|Settings|Properties).*"#
+    open-floating true
+}
+
+// Global window appearance
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+// Inactive window transparency
+window-rule {
+    match is-active=false
+    opacity 0.9  
+}
+
+// Environment Variables
+environment {
+    DISPLAY ":1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    XDG_SESSION_TYPE "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+
+    // Wayland Platform Settings
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    
+    // GTK Settings
+    GDK_BACKEND "wayland,x11"
+    
+    // Firefox Wayland
+    MOZ_ENABLE_WAYLAND "1"
+    MOZ_DBUS_REMOTE "1"
+    
+    // Java Applications
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    
+    // SDL Applications
+    SDL_VIDEODRIVER "wayland"
+    
+    // CLUTTER Applications
+    CLUTTER_BACKEND "wayland"
+    
+    // Performance
+    VDPAU_DRIVER "va_gl"
+    LIBVA_DRIVER_NAME "iHD"
+}

@@ -1,0 +1,178 @@
+# Main format configuration
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$package\
+$python\
+$nodejs\
+$rust\
+$golang\
+$docker_context\
+$line_break\
+$character
+"""
+
+add_newline = false
+
+# Directory configuration
+[directory]
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+read_only = "󰌾 "
+truncation_length = 3
+fish_style_pwd_dir_length = 1
+home_symbol = "~"
+
+# Character at prompt
+[character]
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vimcmd_symbol ="[](bold green)"
+
+# Username display
+[username]
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+# Hostname for SSH
+[hostname]
+ssh_only = true
+ssh_symbol = ""
+format = "[$hostname ]($style)"
+style = "bg:#A94744 fg:#0D1017"
+disabled = false
+
+# Time display
+[time]
+time_format = "%R" # Hour:Minute format
+format = '[ $time ]($style)'
+use_12hr = true
+
+[aws]
+symbol = "󰅟 "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cmake]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = " "
+
+[git_status]
+ahead = "  "
+behind = "  "
+conflicted = " 󰞇 "
+deleted = " 󰆴 "
+diverged = " 󰃻 "
+modified = " 󰏫 "
+renamed = "  "
+staged = "  "
+stashed = " 󰀼 "
+untracked = " 󰋖 "
+up_to_date = "  "
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "

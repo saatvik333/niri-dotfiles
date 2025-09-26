@@ -1,0 +1,113 @@
+# IDE & Editor Configurations
+Code/
+Cursor/
+.vscode/
+Kiro/
+configstore/
+blender/
+
+# Development Tools & Languages
+go/
+gopls/
+flutter/
+fontforge/
+nextjs-nodejs/
+
+# Browsers
+google-chrome/
+.mozilla/
+
+# Communication
+discord/
+vesktop/
+Slack/
+
+# Media & Entertainment
+spotify/
+obs-studio/
+LosslessCut/
+inkscape/
+obsidian/
+spotify-player/
+kew/lastPlaylist.m3u
+kew/kewlibrary
+
+# System & Utilities
+nwg-look/
+nwg-displays/
+systemd/
+balenaEtcher/
+yay/
+easyeffects/
+thefuck/
+qBittorrent/
+sherlock/
+eog/
+ranger/
+nautilus/
+bottom/
+celluloid/
+s-tui/
+kew/
+Thunar/
+waytrogen/
+qView/
+libvirt/
+gnome-boxes/
+deluge/
+
+# Desktop Environment & Frameworks
+kde.org/
+ego/
+gtk-3.0/
+gtk-4.0/
+qt6ct/
+xfce4/
+xsettingsd/
+htop/
+mimeapps.list
+user-dirs.dirs
+user-dirs.locale
+dconf/
+
+# Audio
+pulse/
+
+# Electron Apps
+Electron/
+Notion/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+
+# Environment & Secrets
+*.env
+.env.*
+!shell.env
+
+# Temporary & Cache Files
+*.tmp
+*.temp
+*.cache
+*.log
+*.pid
+*.lock
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backup Files
+*.bak
+*.backup
+*.orig
+*.save
+
+# Linux
+.directory
+.Trash-*
+cachyos/

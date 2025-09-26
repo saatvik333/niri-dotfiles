@@ -1,0 +1,1 @@
+source "/home/saatvik333/.deno/env.fish"
