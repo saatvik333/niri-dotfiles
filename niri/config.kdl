@@ -1,5 +1,14 @@
+// Startup Applications
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "waybar"
+
+// General Settings
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
+
 output "eDP-1" {
-    mode "1920x1080@60.024" 
+    mode "1920x1080@60.024"
     scale 1
 }
 
@@ -12,7 +21,7 @@ input {
     }
 
     touchpad {
-        tap 
+        tap
         natural-scroll
     }
 
@@ -26,6 +35,7 @@ hotkey-overlay {
 
 cursor {
     hide-when-typing
+    hide-after-inactive-ms 5000
 }
 
 overview {
@@ -86,7 +96,7 @@ binds {
     MOD+SHIFT+K                         { move-column-to-workspace-up; }
     MOD+SHIFT+DOWN                      { move-window-down; }
     MOD+SHIFT+J                         { move-column-to-workspace-down; }
-    
+
     // Move to workspace edges
     MOD+SHIFT+HOME                      { move-column-to-first; }
     MOD+SHIFT+END                       { move-column-to-last; }
@@ -110,7 +120,7 @@ binds {
     MOD+ESCAPE                          hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
     MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
     MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-up; }
-    
+
     // Move windows to different workspaces - using wheel matches K/J pattern
     MOD+SHIFT+WHEELSCROLLDOWN           cooldown-ms=150 { move-column-to-workspace-down; }
     MOD+SHIFT+WHEELSCROLLUP             cooldown-ms=150 { move-column-to-workspace-up; }
@@ -144,32 +154,30 @@ binds {
     MOD+SHIFT+9                         { move-column-to-workspace 9; }
 
     MOD+TAB                             { focus-workspace-previous; }
-    
-    // Quick window movement shortcuts - removed conflicting bindings
-    MOD+SHIFT+SPACE                     { toggle-window-floating; }
 
-    // Layout Controls 
+    // Layout Controls
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+BRACKETLEFT                     { set-column-width "-10%"; }
     MOD+BRACKETRIGHT                    { set-column-width "+10%"; }
     MOD+SHIFT+BRACKETLEFT               { set-window-height "-10%"; }
     MOD+SHIFT+BRACKETRIGHT              { set-window-height "+10%"; }
-    
+
     // Window resizing with mouse
     MOD+CTRL+WHEELSCROLLDOWN            { set-window-height "-5%"; }
     MOD+CTRL+WHEELSCROLLUP              { set-window-height "+5%"; }
 
-    // Window Modes 
+    // Window Modes
     MOD+T                               { toggle-window-floating; }
     MOD+F                               { fullscreen-window; }
     MOD+W                               { toggle-column-tabbed-display; }
     MOD+M                               { maximize-column; }
 
-    // Screenshot Shortcuts
+    // Utils
     MOD+S                               { screenshot; }
-    MOD+SHIFT+S                         { screenshot-screen; }
-    MOD+CTRL+S                          { screenshot-window; }
+    MOD+SHIFT+S                         { screenshot-screen write-to-disk=true; }
+    MOD+CTRL+S                          { screenshot-window write-to-disk=true; }
+    MOD+P                               { spawn-sh "hyprpicker"; }
 
     // Application Restarts
     MOD+ALT+W                           { spawn "sh" "-c" "pgrep -x waybar >/dev/null && killall waybar || waybar &"; }
@@ -177,13 +185,6 @@ binds {
     // MOD+ALT+W                           { spawn "killall" "-SIGUSR1" "waybar"; }
 }
 
-// Startup Applications
-spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
-spawn-at-startup "swww-daemon"
-spawn-at-startup "waybar"
-
-prefer-no-csd
-screenshot-path "$HOME/Pictures/Screenshots/"
 
 // Layout Settings
 layout {
@@ -199,12 +200,12 @@ layout {
 
     focus-ring {
         width 0
-        active-color "#F38BA8"
+        active-color "#000000"
     }
-    
+
     insert-hint {
-        // on
-        color "#F38BA850"
+        off
+        color "#000000"
     }
 
     struts {}
@@ -380,12 +381,12 @@ window-rule {
 // Inactive window transparency
 window-rule {
     match is-active=false
-    opacity 0.9  
+    opacity 0.9
 }
 
 // Environment Variables
 environment {
-    DISPLAY ":1"
+    DISPLAY null
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     XDG_SESSION_TYPE "wayland"
     XDG_CURRENT_DESKTOP "niri"
@@ -396,23 +397,23 @@ environment {
     QT_QPA_PLATFORMTHEME_QT6 "gtk3"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
-    
+
     // GTK Settings
     GDK_BACKEND "wayland,x11"
-    
+
     // Firefox Wayland
     MOZ_ENABLE_WAYLAND "1"
     MOZ_DBUS_REMOTE "1"
-    
+
     // Java Applications
     _JAVA_AWT_WM_NONREPARENTING "1"
-    
+
     // SDL Applications
     SDL_VIDEODRIVER "wayland"
-    
+
     // CLUTTER Applications
     CLUTTER_BACKEND "wayland"
-    
+
     // Performance
     VDPAU_DRIVER "va_gl"
     LIBVA_DRIVER_NAME "iHD"

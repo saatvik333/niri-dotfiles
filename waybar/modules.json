@@ -131,10 +131,5 @@
     "format-warning": "bat: {capacity}% low",
     "format-critical": "bat: {capacity}% crit",
     "tooltip": false
-  },
-  "custom/powermenu": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "~/.config/rofi/powermenu/powermenu.sh"
   }
 }

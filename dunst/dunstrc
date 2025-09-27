@@ -16,7 +16,7 @@ text_icon_padding = 20
 # Visual appearance
 corner_radius = 0
 frame_width = 2
-separator_height = 2
+separator_height = 27
 
 # Typography
 font = JetBrainsMono Nerd Font Propo 11

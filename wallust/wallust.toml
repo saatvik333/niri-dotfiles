@@ -61,3 +61,5 @@ vscode = { src = 'vscode.json', dst = '~/.cache/wallust/colors.json' }
 vscode2 = { src = 'vscode', dst = '~/.cache/wallust/colors' }
 
 neopywal = { src = 'neopywal.vim', dst = '~/.cache/wallust/colors_neopywal.vim' }
+
+neopywal-init = { src = 'neopywal-init.lua', dst = '~/.config/nvim/init.lua' }
