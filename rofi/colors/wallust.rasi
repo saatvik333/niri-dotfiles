@@ -1,6 +1,6 @@
 * {
     background:     #1E1E2E;
-    background-alt: #45475A;
+    background-alt: #585B70;
     foreground:     #CDD6F4;
     selected:       #89B4FA;
     active:         #A6E3A1;

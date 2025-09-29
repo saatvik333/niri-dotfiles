@@ -156,6 +156,6 @@ element-text {
     horizontal-align:            0.5;
 }
 element selected.normal {
-    background-color:            var(active);
+    background-color:            var(selected);
     text-color:                  var(background);
 }

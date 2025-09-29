@@ -2,7 +2,7 @@
 # Monitor and positioning
 monitor = 0
 follow = keyboard
-origin = top-right
+origin = top-center
 scale = 0
 
 # Dimensions and spacing
@@ -16,7 +16,7 @@ text_icon_padding = 20
 # Visual appearance
 corner_radius = 0
 frame_width = 2
-separator_height = 27
+separator_height = 20
 
 # Typography
 font = JetBrainsMono Nerd Font Propo 11

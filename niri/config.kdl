@@ -59,7 +59,7 @@ binds {
     MOD+A                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "$HOME/.config/rofi/launcher/launcher.sh"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
-    MOD+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
+    MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
     MOD+BACKSPACE                       hotkey-overlay-title="Power Menu: rofi" { spawn-sh "$HOME/.config/rofi/powermenu/powermenu.sh"; }
     MOD+CTRL+W                          hotkey-overlay-title="Open Wallpaper Selector: rofi" { spawn-sh "$HOME/.config/rofi/bgselector/bgselector.sh"; }
 

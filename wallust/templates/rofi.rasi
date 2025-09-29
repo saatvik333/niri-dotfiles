@@ -1,6 +1,6 @@
 * {
     background:     {{background}};
-    background-alt: {{color0}};
+    background-alt: {{color8}};
     foreground:     {{foreground}};
     selected:       {{color4}};
     active:         {{color2}};

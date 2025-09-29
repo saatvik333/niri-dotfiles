@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-sleep 0.3 # let waytrogen set the wallpaper
+sleep 0.1
 
 # Source common utilities if available
 if [[ -f "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh" ]]; then
@@ -53,6 +53,7 @@ readonly SCRIPT_NAME="${0##*/}"
 readonly WALLPAPERS_DIR="$HOME/Pictures/Wallpapers"
 readonly DEFAULT_GTK_THEME="Colloid-Dark"
 readonly DEFAULT_ICON_THEME="Colloid-Dark"
+readonly THEME_STATE_FILE="$HOME/.cache/theme-sync-state"
 
 # Get theme based on directory and variation
 map_to_gtk_theme() {
@@ -330,6 +331,39 @@ detect_theme_from_wallpaper() {
   echo "$theme_name"
 }
 
+check_theme_changed() {
+  local -r current_theme="$1"
+  local -r current_variation="$2"
+
+  # Create cache directory if it doesn't exist
+  mkdir -p "$(dirname "$THEME_STATE_FILE")"
+
+  if [[ ! -f "$THEME_STATE_FILE" ]]; then
+    log_info "No previous theme state found, this is first run or cache was cleared"
+    return 0 # Theme changed (first run)
+  fi
+
+  local previous_theme previous_variation
+  read -r previous_theme previous_variation < "$THEME_STATE_FILE"
+
+  if [[ "$current_theme" == "$previous_theme" && "$current_variation" == "$previous_variation" ]]; then
+    log_info "Theme unchanged: $current_theme ($current_variation)"
+    return 1 # Theme did not change
+  else
+    log_info "Theme changed: $previous_theme ($previous_variation) → $current_theme ($current_variation)"
+    return 0 # Theme changed
+  fi
+}
+
+save_theme_state() {
+  local -r theme="$1"
+  local -r variation="$2"
+
+  mkdir -p "$(dirname "$THEME_STATE_FILE")"
+  echo "$theme $variation" > "$THEME_STATE_FILE"
+  log_info "Saved theme state: $theme ($variation)"
+}
+
 # Function to set values in INI files
 set_ini_value() {
   local -r file="$1"
@@ -405,6 +439,17 @@ update_gtk_settings() {
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 2> /dev/null || {
       log_warn "Failed to set dark color scheme via gsettings"
     }
+  fi
+
+  # Force reload of GTK settings for running applications
+  if command -v dbus-send > /dev/null 2>&1; then
+    dbus-send --session --dest=org.gtk.Settings --type=method_call \
+      /org/gtk/Settings org.gtk.Settings.NotifyThemeChange 2> /dev/null || true
+  fi
+
+  # Reload xsettingsd if running
+  if pgrep -x xsettingsd > /dev/null; then
+    pkill -HUP xsettingsd
   fi
 }
 
@@ -605,8 +650,6 @@ update_vscode_theme() {
 main() {
   log_info "Starting dynamic theme synchronization"
 
-  pkill dunst || dunst &
-
   # Validate dependencies
   validate_dependencies "swww" "wallust" "gsettings" "jq"
 
@@ -648,6 +691,12 @@ main() {
   # Store the variation for functions that need access to it
   export WALLPAPER_VARIATION="$wallpaper_variation"
 
+  # Check if theme/variation changed
+  local theme_changed=0
+  if check_theme_changed "$detected_theme" "$wallpaper_variation"; then
+    theme_changed=1
+  fi
+
   # Map to appropriate themes using both theme and variation
   local gtk_theme
   gtk_theme=$(map_to_gtk_theme "$detected_theme" "$wallpaper_variation")
@@ -658,16 +707,23 @@ main() {
   local wallust_theme
   wallust_theme=$(map_to_wallust_theme "$detected_theme" "$wallpaper_variation")
 
-  # Apply themes
-  set_gtk_theme "$gtk_theme"
-  set_icon_theme "$icon_theme"
-  run_wallust_theme "$wallust_theme" "$wallpaper_path"
-  update_niri_config
-  update_vscode_theme
+  # Only apply themes if theme/variation changed
+  if [[ $theme_changed -eq 1 ]]; then
+    pkill dunst || dunst &
 
-  log_success "Dynamic theme synchronization completed successfully"
+    set_gtk_theme "$gtk_theme"
+    set_icon_theme "$icon_theme"
+    run_wallust_theme "$wallust_theme" "$wallpaper_path"
+    update_niri_config
+    update_vscode_theme
+    save_theme_state "$detected_theme" "$wallpaper_variation"
 
-  send_notification "Theme Manager" "Theme Synchronization Complete" "" "normal" "preferences-desktop-theme"
+    log_success "Dynamic theme synchronization completed successfully"
+    send_notification "Theme Manager" "Theme Synchronization Complete" "" "normal" "preferences-desktop-theme"
+  else
+    log_info "Theme unchanged, skipping all theming operations"
+    log_success "Wallpaper applied, no theme changes needed"
+  fi
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
