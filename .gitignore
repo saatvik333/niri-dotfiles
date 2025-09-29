@@ -62,7 +62,9 @@ ego/
 gtk-3.0/
 gtk-4.0/
 qt6ct/
+qt5ct/
 xfce4/
+QtProject.conf
 xsettingsd/
 htop/
 mimeapps.list
