@@ -61,6 +61,7 @@ binds {
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
     MOD+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
     MOD+BACKSPACE                       hotkey-overlay-title="Power Menu: rofi" { spawn-sh "$HOME/.config/rofi/powermenu/powermenu.sh"; }
+    MOD+CTRL+W                          hotkey-overlay-title="Open Wallpaper Selector: rofi" { spawn-sh "$HOME/.config/rofi/bgselector/bgselector.sh"; }
 
     // Media Keys
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "$HOME/.config/scripts/volume-brightness.sh volume_up"; }
@@ -185,7 +186,6 @@ binds {
     // MOD+ALT+W                           { spawn "killall" "-SIGUSR1" "waybar"; }
 }
 
-
 // Layout Settings
 layout {
     gaps 0
@@ -200,12 +200,12 @@ layout {
 
     focus-ring {
         width 0
-        active-color "#000000"
+        active-color "#1E1E2E"
     }
 
     insert-hint {
         off
-        color "#000000"
+        color "#1E1E2E"
     }
 
     struts {}
@@ -280,8 +280,6 @@ window-rule {
     match title=r#".*(Open|Save|Select).*"#
     open-floating true
     default-column-width { proportion 0.0; }
-    min-width 600
-    min-height 800
     max-width 800
     max-height 1000
 }
@@ -290,8 +288,6 @@ window-rule {
     match title=r#".*File.*"#
     open-floating true
     default-column-width { proportion 0.0; }
-    min-width 600
-    min-height 800
     max-width 800
     max-height 1000
 }
@@ -300,10 +296,13 @@ window-rule {
     match app-id=r#"org\.gtk\.FileChooserDialog"#
     open-floating true
     default-column-width { proportion 0.0; }
-    min-width 600
-    min-height 800
     max-width 800
     max-height 1000
+}
+
+window-rule {
+    match title=r#".*Sign in - Google Accounts — Mozilla Firefox"#
+    open-floating true
 }
 
 // System dialogs
@@ -355,16 +354,6 @@ window-rule {
     open-floating true
 }
 
-// Calculator and small utilities
-window-rule {
-    match app-id=r#"org\.gnome\.Calculator"#
-    open-floating true
-}
-
-window-rule {
-    match app-id=r#"gnome-calendar"# title=r#".*Event.*"#
-    open-floating true
-}
 
 // Steam dialogs
 window-rule {

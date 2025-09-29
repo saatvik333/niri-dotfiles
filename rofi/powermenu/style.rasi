@@ -1,12 +1,3 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
 /*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
@@ -50,7 +41,7 @@ mainbox {
     padding:                     15px;
     border:                      2px solid;
     border-radius:               0px;
-    border-color:                @urgent;
+    border-color:                @selected;
     background-color:            transparent;
     children:                    [ "listview" ];
 }
@@ -165,6 +156,6 @@ element-text {
     horizontal-align:            0.5;
 }
 element selected.normal {
-    background-color:            var(urgent);
+    background-color:            var(active);
     text-color:                  var(background);
 }

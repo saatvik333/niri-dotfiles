@@ -1,11 +1,3 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Configuration For Rofi Version: 1.7.3
- **/
-
 configuration {
 	/*---------- General setting ----------*/
 	modi: "drun,run,filebrowser,window";
@@ -116,8 +108,9 @@ configuration {
 	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";
 	kb-remove-word-forward: "Control+Alt+d";
 	kb-remove-char-forward: "Delete,Control+d";
-	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";
+	kb-remove-char-back: "BackSpace,Shift+BackSpace";
 	kb-remove-to-sol: "Control+u";
+	kb-remove-to-eol: "Control+q";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
 	kb-accept-custom: "Control+Return";
 	kb-accept-custom-alt: "Control+Shift+Return";
@@ -125,10 +118,11 @@ configuration {
 	kb-delete-entry: "Shift+Delete";
 	kb-mode-next: "Shift+Right,Control+Tab";
 	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
-	kb-mode-complete: "Control+l";
-	kb-row-left: "Control+Page_Up";
-	kb-row-right: "Control+Page_Down";
-	kb-row-down: "Down,Control+j";
+	kb-mode-complete: "Control+p";
+	kb-row-left: "Alt+h";
+	kb-row-right: "Alt+l";
+	kb-row-down: "Down,Alt+j";
+	kb-row-up: "Up,Alt+k";
 	kb-page-prev: "Page_Up";
 	kb-page-next: "Page_Down";
 	kb-row-first: "Home,KP_Home";

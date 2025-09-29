@@ -1,12 +1,3 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "drun";
@@ -24,7 +15,7 @@ configuration {
 @import                          "shared/fonts.rasi"
 
 * {
-    border-colour:               var(urgent);
+    border-colour:               var(selected);
     handle-colour:               var(selected);
     background-colour:           var(background);
     foreground-colour:           var(foreground);

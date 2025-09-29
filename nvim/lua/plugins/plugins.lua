@@ -1,9 +1,9 @@
 return {{
     "LazyVim/LazyVim",
     opts = {
-        -- colorscheme = function()
-        -- end,
-        -- colorscheme = "catppuccin",
+        news = {
+            headlines = false,
+        },
         extras = {"lazyvim.plugins.extras.lang.typescript", "lazyvim.plugins.extras.lang.python",
                   "lazyvim.plugins.extras.lang.json", "lazyvim.plugins.extras.lang.yaml",
                   "lazyvim.plugins.extras.lang.markdown", "lazyvim.plugins.extras.lang.docker",
@@ -16,16 +16,14 @@ return {{
     }
 
 }, {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
         vim.list_extend(opts.ensure_installed, { -- Core LSP Servers
         "lua-language-server", "pyright", "ruff-lsp", "typescript-language-server", "eslint-lsp", "html-lsp", "css-lsp",
         "tailwindcss-language-server", "json-lsp", "yaml-language-server", "taplo", "marksman", "rust-analyzer",
         "gopls", "dockerfile-language-server", "terraform-ls", "prisma-language-server", "clangd", -- Formatters
         "stylua", "prettierd", "eslint_d", "shfmt", "rustfmt", "gofumpt", "goimports", "taplo", "black", "isort",
-        "clang-format",
-
-        -- Linters
+        "clang-format", -- Linters
         "shellcheck", "ruff", "eslint_d", "yamllint", "markdownlint", "hadolint"})
     end
 }, {
@@ -90,7 +88,8 @@ return {{
         },
         formatters = {
             prettierd = {
-                prepend_args = {"--tab-width", "2", "--single-quote", "true", "--trailing-comma", "es5", "--print-width", "100", "--semi", "true"}
+                prepend_args = {"--tab-width", "2", "--single-quote", "true", "--trailing-comma", "es5",
+                                "--print-width", "100", "--semi", "true"}
             },
             shfmt = {
                 prepend_args = {"-i", "2", "-ci", "-sr"}
@@ -109,4 +108,19 @@ return {{
             }
         }
     }
+}, {
+    "RedsXDD/neopywal.nvim",
+    name = "neopywal",
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require("neopywal").setup({
+            transparent_background = true,
+            use_palette = {
+                dark = "wallust",
+                light = "wallust"
+            }
+        })
+        vim.cmd.colorscheme("neopywal-dark")
+    end
 }}

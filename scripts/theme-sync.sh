@@ -237,9 +237,9 @@ map_to_wallust_theme() {
       ;;
     "gruvbox")
       if [[ "$variation" == "light" ]]; then
-        echo "Gruvbox-Material-Light"
+        echo "Gruvbox"
       else
-        echo "Gruvbox-Material-Dark"
+        echo "Gruvbox-Dark"
       fi
       ;;
     "material")
@@ -550,11 +550,65 @@ run_wallust_theme() {
   fi
 }
 
+update_niri_config() {
+  local -r niri_config_file="$HOME/.config/niri/config.kdl"
+  local -r wallust_colors_file="$HOME/.cache/wallust/colors.json"
+
+  if [[ ! -f "$wallust_colors_file" ]]; then
+    log_warn "Wallust color cache not found, skipping niri config update"
+    return
+  fi
+
+  local background_color
+  background_color=$(jq -r '.special.background' "$wallust_colors_file")
+
+  if [[ -z "$background_color" ]]; then
+    log_warn "Could not extract background color from wallust cache"
+    return
+  fi
+
+  log_info "Updating niri config with background color: $background_color"
+
+  # Only change active-color within the focus-ring block
+  sed -i "/focus-ring {/,/}/ s/active-color \".*\"/active-color \"$background_color\"/" "$niri_config_file"
+  # Only change color within the insert-hint block
+  sed -i "/insert-hint {/,/}/ s/color \".*\"/color \"$background_color\"/" "$niri_config_file"
+
+  log_success "Niri config updated successfully"
+}
+
+update_vscode_theme() {
+  local -r vscode_settings_file="$HOME/.config/Code/User/settings.json"
+  local theme
+
+  if [[ ! -f "$vscode_settings_file" ]]; then
+    log_warn "VSCode settings file not found, skipping theme update"
+    return
+  fi
+
+  if [[ "$WALLPAPER_VARIATION" == "light" ]]; then
+    theme="Wallust-Bordered-Light"
+  else
+    theme="Wallust-Bordered-Dark"
+  fi
+
+  log_info "Updating VSCode theme to: $theme"
+
+  if ! sed -i "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$theme\"/" "$vscode_settings_file"; then
+    log_error "Failed to update VSCode theme with sed"
+    return 1
+  fi
+
+  log_success "VSCode theme updated successfully"
+}
+
 main() {
   log_info "Starting dynamic theme synchronization"
 
+  pkill dunst || dunst &
+
   # Validate dependencies
-  validate_dependencies "swww" "wallust" "gsettings"
+  validate_dependencies "swww" "wallust" "gsettings" "jq"
 
   # Detect theme from current wallpaper
   local detected_theme
@@ -608,17 +662,14 @@ main() {
   set_gtk_theme "$gtk_theme"
   set_icon_theme "$icon_theme"
   run_wallust_theme "$wallust_theme" "$wallpaper_path"
+  update_niri_config
+  update_vscode_theme
 
   log_success "Dynamic theme synchronization completed successfully"
 
-  # Send notification if notify-send is available
-  if command -v notify-send > /dev/null 2>&1; then
-    notify-send "Theme Sync" "Theme updated to: $detected_theme" \
-      --icon=preferences-desktop-theme --urgency=low
-  fi
+  send_notification "Theme Manager" "Theme Synchronization Complete" "" "normal" "preferences-desktop-theme"
 }
 
-# --- Script Entry Point ---
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   main "$@"
 fi
