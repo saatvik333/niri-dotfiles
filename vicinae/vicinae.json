@@ -13,6 +13,7 @@
         "searchFiles": true
     },
     "theme": {
+        "iconTheme": "",
         "name": "catppuccin-mocha"
     },
     "window": {
