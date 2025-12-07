@@ -3,14 +3,13 @@ spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 spawn-at-startup "swww-daemon"
 spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "vicinae server &"
-// spawn-at-startup "niri-switch-daemon"
 
 // General Settings
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
 output "eDP-1" {
-    mode "1920x1080@60.024"
+    mode "1920x1080"
     scale 1
 }
 
@@ -170,7 +169,6 @@ binds {
     MOD+SHIFT+9                         { move-column-to-workspace 9; }
 
     MOD+TAB                             { focus-workspace-previous; }
-    ALT+TAB                             { spawn "niri-switch"; }
 
     // Layout Controls
     MOD+C                               { center-column; }
@@ -216,12 +214,12 @@ layout {
 
     focus-ring {
         width 0
-        active-color "#1E1E2E"
+        active-color "#282828"
     }
 
     insert-hint {
         off
-        color "#1E1E2E"
+        color "#282828"
     }
 
     struts {}
@@ -371,7 +369,7 @@ window-rule {
 // Inactive window transparency
 window-rule {
     match is-active=false
-    opacity 0.9
+    opacity 0.8
 }
 
 // Environment Variables

@@ -705,6 +705,7 @@ main() {
     run_wallust_theme "$wallust_theme" "$wallpaper_path"
     update_niri_config
     update_vscode_theme
+    vicinae theme set wallust
     if command -v makoctl > /dev/null 2>&1; then
       makoctl reload 2> /dev/null || log_warn "Failed to reload mako"
     else

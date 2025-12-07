@@ -1,0 +1,118 @@
+# Vicinae Theme - Wallust Generated
+# This file is a template. Place it in your wallust templates directory
+# and configure wallust.toml to output it to your vicinae themes folder.
+
+[meta]
+name = "Wallust Generated"
+description = "Dynamic theme generated from current wallpaper"
+variant = "dark" # Wallust defaults to dark variants usually.
+inherits = "vicinae-dark"
+
+# ============================================================================
+# Core Colors
+# ============================================================================
+
+[colors.core]
+accent = "{{color4}}"              # Standard ANSI Blue for primary actions
+accent_foreground = "{{background}}" # Text on accent should be dark for contrast
+background = "{{background}}"      # Main wallpaper-derived background
+foreground = "{{foreground}}"      # Main text color
+secondary_background = "{{color0 | lighten(0.05)}}" # Slightly elevated surface
+border = "{{color8 | darken(0.3)}}" # Subtler border than raw bright-black
+
+# ============================================================================
+# Window-Specific Colors
+# ============================================================================
+
+[colors.main_window]
+border = "{{color8 | darken(0.3)}}"
+
+[colors.settings_window]
+border = "{{color8 | darken(0.3)}}"
+
+# ============================================================================
+# Accent Colors
+# ============================================================================
+
+[colors.accents]
+blue = "{{color4}}"
+green = "{{color2}}"
+magenta = "{{color5}}"
+orange = "{{color3}}"   # ANSI Yellow/Orange are often swapped or similar
+red = "{{color1}}"
+yellow = "{{color3}}"
+cyan = "{{color6}}"
+purple = "{{color5}}"
+
+# ============================================================================
+# Text Colors
+# ============================================================================
+
+[colors.text]
+default = "{{foreground}}"
+muted = "{{foreground | darken(0.4)}}"       # Derived from foreground for consistent tone
+danger = "{{color1}}"              # Red for errors
+success = "{{color2}}"             # Green for success
+placeholder = "{{foreground | darken(0.6)}}" # Even darker than muted
+selection = { background = "{{color4}}", foreground = "{{background}}" }
+
+[colors.text.links]
+default = "{{color4}}"
+visited = "{{color5 | darken(0.1)}}"
+
+# ============================================================================
+# Input Fields
+# ============================================================================
+
+[colors.input]
+border = "{{color8 | darken(0.3)}}"
+border_focus = "{{color4}}"
+border_error = "{{color1}}"
+
+# ============================================================================
+# Buttons
+# ============================================================================
+
+[colors.button.primary]
+background = "{{color0 | lighten(0.1)}}" # Explicitly elevated button background
+foreground = "{{foreground}}"
+hover = { background = "{{color8 | darken(0.1)}}" } # Smoother hover state
+focus = { outline = "{{color4}}" }
+
+# ============================================================================
+# Lists
+# ============================================================================
+
+[colors.list.item.hover]
+background = "{{color8 | darken(0.2)}}" # darker hover for better text contrast
+foreground = "{{foreground}}"
+
+[colors.list.item.selection]
+background = "{{color8}}"          # Selected item background
+foreground = "{{foreground}}"
+secondary_background = "{{color8}}"
+secondary_foreground = "{{foreground}}"
+
+# ============================================================================
+# Grid Items
+# ============================================================================
+
+[colors.grid.item]
+background = "{{color0 | lighten(0.05)}}"
+hover = { outline = "{{foreground | darken(0.2)}}" }
+selection = { outline = "{{color4}}" }
+
+# ============================================================================
+# Scrollbars
+# ============================================================================
+
+[colors.scrollbars]
+background = "{{color0}}"
+
+# ============================================================================
+# Loading Indicators
+# ============================================================================
+
+[colors.loading]
+bar = "{{color4}}"
+spinner = "{{color4}}"

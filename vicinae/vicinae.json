@@ -1,9 +1,9 @@
 {
-    "closeOnFocusLoss": true,
+    "closeOnFocusLoss": false,
     "considerPreedit": false,
     "faviconService": "google",
     "font": {
-        "size": 10.5
+        "size": 11
     },
     "keybinding": "default",
     "keybinds": {
@@ -14,7 +14,7 @@
     },
     "theme": {
         "iconTheme": "",
-        "name": "catppuccin-mocha"
+        "name": "wallust"
     },
     "window": {
         "csd": true,
