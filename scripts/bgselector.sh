@@ -78,7 +78,7 @@ rm "$rofi_input"
 if [ -n "$selected" ]; then
     selected_path="$WALL_DIR/$selected"
     if [ -f "$selected_path" ]; then
-        swww img "$selected_path" -t fade --transition-duration 1 --transition-fps 60 &
+        awww img "$selected_path" -t fade --transition-duration 1 --transition-fps 60 &
         sleep 0.2
         "$HOME/.config/scripts/theme-sync.sh" &
         wait

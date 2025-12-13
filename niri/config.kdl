@@ -1,6 +1,6 @@
 // Startup Applications
 spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
-spawn-at-startup "swww-daemon"
+spawn-at-startup "awww-daemon"
 spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "vicinae server &"
 
@@ -47,7 +47,7 @@ overview {
 }
 
 layer-rule {
-    match namespace="^swww-daemon$"
+    match namespace="^awww-daemon$"
     place-within-backdrop true
 }
 
@@ -214,12 +214,12 @@ layout {
 
     focus-ring {
         width 0
-        active-color "#282828"
+        active-color "#1E1E2E"
     }
 
     insert-hint {
         off
-        color "#282828"
+        color "#1E1E2E"
     }
 
     struts {}

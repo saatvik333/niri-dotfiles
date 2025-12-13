@@ -24,7 +24,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Wallust"
   },
   "title_bar": {
     "show": "hide_in_full_screen"

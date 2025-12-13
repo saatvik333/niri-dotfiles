@@ -1,0 +1,323 @@
+
+{
+    "author": "Jan Reinsch <jan@coded-aesthetics.com>",
+    "name": "Wallust",
+    "themes": [
+        {
+            "name": "Wallust",
+            "appearance": "dark",
+            "style": {
+                "background": "{{background}}",
+                "text": "{{foreground}}",
+                "text.muted": "{{foreground | darken(0.2)}}",
+                "text.placeholder": "{{foreground | darken(0.3)}}",
+                "text.disabled": "{{foreground | darken(0.4)}}",
+                "text.accent": "{{color4}}",
+
+                "icon": "{{foreground}}",
+                "icon.muted": "{{foreground | darken(0.2)}}",
+                "icon.disabled": "{{foreground | darken(0.4)}}",
+                "icon.placeholder": "{{foreground | darken(0.3)}}",
+                "icon.accent": "{{color4}}",
+
+                "border": "{{foreground | darken(0.6)}}",
+                "border.variant": "{{foreground | darken(0.7)}}",
+                "border.focused": "{{color4}}",
+                "border.selected": "{{color4}}",
+                "border.transparent": "#00000000",
+                "border.disabled": "{{foreground | darken(0.8)}}",
+
+                "surface.background": "{{background}}",
+                "elevated_surface.background": "{{background | lighten(0.1)}}",
+
+                "element.background": "transparent",
+                "element.hover": "{{background | blend(foreground) | darken(0.6)}}",
+                "element.active": "{{background | blend(color4) | darken(0.4)}}",
+                "element.selected": "{{background | blend(color4) | darken(0.5)}}",
+                "element.disabled": "{{background | lighten(0.05)}}",
+
+                "ghost_element.background": "transparent",
+                "ghost_element.hover": "{{background | blend(foreground) | darken(0.8)}}",
+                "ghost_element.active": "{{background | blend(foreground) | darken(0.6)}}",
+                "ghost_element.selected": "{{background | blend(color4) | darken(0.7)}}",
+                "ghost_element.disabled": "transparent",
+
+                "drop_target.background": "{{background | blend(color4) | darken(0.3)}}",
+
+                "status_bar.background": "{{background | lighten(0.05)}}",
+                "title_bar.background": "{{background}}",
+                "title_bar.inactive_background": "{{background | lighten(0.03)}}",
+                "toolbar.background": "{{background}}",
+
+                "panel.background": "{{background}}",
+                "panel.focused_border": "{{color4}}",
+
+                "pane.focused_border": "{{color4}}",
+                "pane_group.border": "{{foreground | darken(0.6)}}",
+
+                "tab_bar.background": "{{background | lighten(0.05)}}",
+                "tab.inactive_background": "transparent",
+                "tab.active_background": "{{background}}",
+
+                "editor.background": "{{background}}",
+                "editor.foreground": "{{foreground}}",
+                "editor.gutter.background": "{{background}}",
+                "editor.subheader.background": "{{background | lighten(0.05)}}",
+                "editor.active_line.background": "{{background | blend(foreground) | darken(0.8)}}",
+                "editor.highlighted_line.background": "{{background | blend(color3) | darken(0.6)}}",
+                "editor.line_number": "{{foreground | darken(0.4)}}",
+                "editor.active_line_number": "{{foreground}}",
+                "editor.invisible": "{{foreground | darken(0.5)}}",
+                "editor.wrap_guide": "{{foreground | darken(0.6)}}",
+                "editor.active_wrap_guide": "{{foreground | darken(0.4)}}",
+                "editor.indent_guide": "{{foreground | darken(0.6)}}",
+                "editor.indent_guide_active": "{{foreground | darken(0.4)}}",
+                "editor.document_highlight.read_background": "{{background | blend(color3) | darken(0.5)}}",
+                "editor.document_highlight.write_background": "{{background | blend(color1) | darken(0.5)}}",
+                "editor.document_highlight.bracket_background": "{{background | blend(color4) | darken(0.5)}}",
+
+                "terminal.background": "{{background}}",
+                "terminal.foreground": "{{foreground}}",
+                "terminal.bright_foreground": "{{foreground | lighten(0.1)}}",
+                "terminal.dim_foreground": "{{foreground | darken(0.2)}}",
+                "terminal.ansi.background": "{{background}}",
+                "terminal.ansi.black": "{{color0}}",
+                "terminal.ansi.red": "{{color1}}",
+                "terminal.ansi.green": "{{color2}}",
+                "terminal.ansi.yellow": "{{color3}}",
+                "terminal.ansi.blue": "{{color4}}",
+                "terminal.ansi.magenta": "{{color5}}",
+                "terminal.ansi.cyan": "{{color6}}",
+                "terminal.ansi.white": "{{color7}}",
+                "terminal.ansi.bright_black": "{{color8}}",
+                "terminal.ansi.bright_red": "{{color9}}",
+                "terminal.ansi.bright_green": "{{color10}}",
+                "terminal.ansi.bright_yellow": "{{color11}}",
+                "terminal.ansi.bright_blue": "{{color12}}",
+                "terminal.ansi.bright_magenta": "{{color13}}",
+                "terminal.ansi.bright_cyan": "{{color14}}",
+                "terminal.ansi.bright_white": "{{color15}}",
+
+                "search.match_background": "{{background | blend(color3) | darken(0.2)}}",
+
+                "scrollbar.track.background": "transparent",
+                "scrollbar.track.border": "transparent",
+                "scrollbar.thumb.background": "{{foreground | darken(0.5)}}",
+                "scrollbar.thumb.border": "transparent",
+                "scrollbar.thumb.hover_background": "{{foreground | darken(0.3)}}",
+
+                "success": "{{color2}}",
+                "success.background": "{{background | blend(color2) | darken(0.5)}}",
+                "success.border": "{{color2}}",
+
+                "warning": "{{color3}}",
+                "warning.background": "{{background | blend(color3) | darken(0.5)}}",
+                "warning.border": "{{color3}}",
+
+                "error": "{{color1}}",
+                "error.background": "{{background | blend(color1) | darken(0.5)}}",
+                "error.border": "{{color1}}",
+
+                "info": "{{color4}}",
+                "info.background": "{{background | blend(color4) | darken(0.5)}}",
+                "info.border": "{{color4}}",
+
+                "hint": "{{foreground | darken(0.2)}}",
+                "hint.background": "{{background | blend(foreground) | darken(0.7)}}",
+                "hint.border": "{{foreground | darken(0.2)}}",
+
+                "created": "{{color2}}",
+                "created.background": "{{background | blend(color2) | darken(0.5)}}",
+                "created.border": "{{color2}}",
+
+                "modified": "{{color3}}",
+                "modified.background": "{{background | blend(color3) | darken(0.5)}}",
+                "modified.border": "{{color3}}",
+
+                "deleted": "{{color1}}",
+                "deleted.background": "{{background | blend(color1) | darken(0.5)}}",
+                "deleted.border": "{{color1}}",
+
+                "renamed": "{{color4}}",
+                "renamed.background": "{{background | blend(color4) | darken(0.5)}}",
+                "renamed.border": "{{color4}}",
+
+                "conflict": "{{color5}}",
+                "conflict.background": "{{background | blend(color5) | darken(0.5)}}",
+                "conflict.border": "{{color5}}",
+
+                "ignored": "{{foreground | darken(0.3)}}",
+                "ignored.background": "{{background | blend(foreground) | darken(0.8)}}",
+                "ignored.border": "{{foreground | darken(0.3)}}",
+
+                "hidden": "{{foreground | darken(0.4)}}",
+                "hidden.background": "transparent",
+                "hidden.border": "{{foreground | darken(0.4)}}",
+
+                "predictive": "{{foreground | darken(0.3)}}",
+                "predictive.background": "{{background | blend(foreground) | darken(0.8)}}",
+                "predictive.border": "{{foreground | darken(0.3)}}",
+
+                "unreachable": "{{foreground | darken(0.5)}}",
+                "unreachable.background": "{{background | lighten(0.03)}}",
+                "unreachable.border": "{{foreground | darken(0.5)}}",
+
+                "link_text.hover": "{{color4 | lighten(0.1)}}",
+
+                "syntax": {
+                    "comment": {
+                        "color": "{{foreground | darken(0.2)}}",
+                        "font_style": "italic"
+                    },
+                    "comment.doc": {
+                        "color": "{{foreground | darken(0.1)}}",
+                        "font_style": "italic"
+                    },
+
+                    "keyword": {
+                        "color": "{{color1}}"
+                    },
+
+                    "string": {
+                        "color": "{{color2}}"
+                    },
+                    "string.escape": {
+                        "color": "{{color6}}"
+                    },
+                    "string.regex": {
+                        "color": "{{color6}}"
+                    },
+
+                    "number": {
+                        "color": "{{color3}}"
+                    },
+                    "constant": {
+                        "color": "{{color3}}"
+                    },
+                    "boolean": {
+                        "color": "{{color5}}"
+                    },
+
+                    "function": {
+                        "color": "{{color4}}"
+                    },
+                    "constructor": {
+                        "color": "{{color4}}"
+                    },
+
+                    "type": {
+                        "color": "{{color5}}"
+                    },
+                    "enum": {
+                        "color": "{{color5}}"
+                    },
+
+                    "variable": {
+                        "color": "{{foreground}}"
+                    },
+                    "variable.special": {
+                        "color": "{{color5}}"
+                    },
+
+                    "property": {
+                        "color": "{{color4}}"
+                    },
+                    "attribute": {
+                        "color": "{{color3}}"
+                    },
+
+                    "operator": {
+                        "color": "{{color6}}"
+                    },
+
+                    "punctuation": {
+                        "color": "{{foreground | darken(0.1)}}"
+                    },
+                    "punctuation.bracket": {
+                        "color": "{{foreground}}"
+                    },
+                    "punctuation.delimiter": {
+                        "color": "{{foreground | darken(0.1)}}"
+                    },
+
+                    "tag": {
+                        "color": "{{color1}}"
+                    },
+
+                    "label": {
+                        "color": "{{color4}}"
+                    },
+
+                    "text.literal": {
+                        "color": "{{color2}}"
+                    },
+
+                    "title": {
+                        "color": "{{color4}}",
+                        "font_weight": 700
+                    },
+
+                    "link_text": {
+                        "color": "{{color4}}",
+                        "font_style": "italic"
+                    },
+                    "link_uri": {
+                        "color": "{{color6}}"
+                    },
+
+                    "emphasis": {
+                        "font_style": "italic"
+                    },
+                    "emphasis.strong": {
+                        "font_weight": 700
+                    },
+
+                    "embedded": {
+                        "color": "{{foreground}}"
+                    },
+                    "preproc": {
+                        "color": "{{color1}}"
+                    },
+                    "primary": {
+                        "color": "{{foreground}}"
+                    },
+                    "variant": {
+                        "color": "{{color5}}"
+                    },
+
+                    "hint": {
+                        "color": "{{foreground | darken(0.2)}}",
+                        "font_weight": 700
+                    },
+                    "predictive": {
+                        "color": "{{foreground | darken(0.3)}}",
+                        "font_style": "italic"
+                    }
+                },
+
+                "players": [
+                    {
+                        "cursor": "{{color4}}",
+                        "background": "{{color4}}",
+                        "selection": "{{background | blend(color4) | darken(0.3)}}"
+                    },
+                    {
+                        "cursor": "{{color2}}",
+                        "background": "{{color2}}",
+                        "selection": "{{background | blend(color2) | darken(0.3)}}"
+                    },
+                    {
+                        "cursor": "{{color3}}",
+                        "background": "{{color3}}",
+                        "selection": "{{background | blend(color3) | darken(0.3)}}"
+                    },
+                    {
+                        "cursor": "{{color5}}",
+                        "background": "{{color5}}",
+                        "selection": "{{background | blend(color5) | darken(0.3)}}"
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -195,7 +195,6 @@ alias search='yay -Ss'
 alias lsearch='yay -Qs'
 alias remove='yay -Rns'
 alias shutdown='systemctl poweroff'
-alias du='dust'
 
 ##################
 ### Environment ###
