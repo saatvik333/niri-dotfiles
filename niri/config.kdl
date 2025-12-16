@@ -185,7 +185,7 @@ binds {
     // Window Modes
     MOD+T                               { toggle-window-floating; }
     MOD+F                               { fullscreen-window; }
-    MOD+M                               { maximize-column; }
+    MOD+M                               { maximize-window-to-edges; }
     // MOD+W                               { toggle-column-tabbed-display; }
 
     // Utils
