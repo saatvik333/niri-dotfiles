@@ -185,7 +185,7 @@ binds {
     // Window Modes
     MOD+T                               { toggle-window-floating; }
     MOD+F                               { fullscreen-window; }
-    MOD+M                               { maximize-window-to-edges; }
+    MOD+M                               { maximize-column; }
     // MOD+W                               { toggle-column-tabbed-display; }
 
     // Utils
@@ -369,7 +369,7 @@ window-rule {
 // Inactive window transparency
 window-rule {
     match is-active=false
-    opacity 0.8
+    opacity 0.9
 }
 
 // Environment Variables
