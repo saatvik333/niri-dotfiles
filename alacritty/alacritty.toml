@@ -6,7 +6,7 @@ working_directory = "None"
 [window]
 dynamic_padding = true
 decorations = "none"
-opacity = 0.9
+opacity = 1
 padding.x = 10
 padding.y = 10
 

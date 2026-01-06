@@ -1,0 +1,34 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+   "keybinding": "default",
+   "font": {
+      "normal": {}
+   },
+   "theme": {
+      "dark": {
+         "name": "wallust"
+      }
+   },
+   "launcher_window": {
+      "opacity": 1
+   },
+   "keybinds": {},
+   "providers": {
+      "@sovereign/store.vicinae.awww-switcher": {
+         "preferences": {
+            "colorGenTool": "wallust",
+            "gridRows": "3",
+            "wallpaperPath": "/home/saatvik333/Pictures/Wallpapers/"
+         }
+      }
+   }
+}

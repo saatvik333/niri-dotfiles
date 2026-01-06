@@ -216,3 +216,5 @@ string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path
 
 # opencode
 fish_add_path /home/saatvik333/.opencode/bin
+
+fish_add_path /home/saatvik333/.spicetify

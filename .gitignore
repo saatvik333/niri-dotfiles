@@ -78,6 +78,7 @@ mimeapps.list
 user-dirs.dirs
 user-dirs.locale
 dconf/
+spicetify/
 
 # Audio
 pulse/

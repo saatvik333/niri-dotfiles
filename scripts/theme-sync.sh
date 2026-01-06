@@ -612,20 +612,27 @@ update_niri_config() {
     return
   fi
 
-  local background_color
-  background_color=$(jq -r '.special.background' "$wallust_colors_file")
+  local active_color inactive_color
+  active_color=$(jq -r '.special.foreground' "$wallust_colors_file")
+  inactive_color=$(jq -r '.special.background' "$wallust_colors_file")
 
-  if [[ -z "$background_color" ]]; then
-    log_warn "Could not extract background color from wallust cache"
+  if [[ -z "$active_color" || -z "$inactive_color" ]]; then
+    log_warn "Could not extract colors from wallust cache"
     return
   fi
 
-  log_info "Updating niri config with background color: $background_color"
+  log_info "Updating niri config with active color: $active_color and inactive color: $inactive_color"
 
-  # Only change active-color within the focus-ring block
-  sed -i "/focus-ring {/,/}/ s/active-color \".*\"/active-color \"$background_color\"/" "$niri_config_file"
-  # Only change color within the insert-hint block
-  sed -i "/insert-hint {/,/}/ s/color \".*\"/color \"$background_color\"/" "$niri_config_file"
+  # Configure border colors
+  sed -i "/border {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_config_file"
+  sed -i "/border {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_config_file"
+
+  # Configure tab-indicator colors
+  sed -i "/tab-indicator {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_config_file"
+  sed -i "/tab-indicator {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_config_file"
+
+  # Configure insert-hint color
+  sed -i "/insert-hint {/,/}/ s/color \".*\"/color \"$active_color\"/" "$niri_config_file"
 
   log_success "Niri config updated successfully"
 }
@@ -704,12 +711,16 @@ main() {
     set_icon_theme "$icon_theme"
     run_wallust_theme "$wallust_theme" "$wallpaper_path"
     update_niri_config
-    update_vscode_theme
     vicinae theme set wallust
     if command -v makoctl > /dev/null 2>&1; then
       makoctl reload 2> /dev/null || log_warn "Failed to reload mako"
     else
       log_warn "makoctl not available, skipping notification daemon reload"
+    fi
+    if pgrep -x spotify > /dev/null; then
+      spicetify apply
+    else
+      spicetify apply -n
     fi
     save_theme_state "$detected_theme" "$wallpaper_variation"
 
@@ -724,4 +735,3 @@ main() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   main "$@"
 fi
-

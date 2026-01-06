@@ -56,12 +56,12 @@ binds {
     MOD+SHIFT+ESCAPE                    { show-hotkey-overlay; }
 
     // Application Shortcuts
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
-    MOD+ALT+RETURN                      hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn-sh "alacritty"; }
+    MOD+ALT+RETURN                      hotkey-overlay-title="Open Terminal: Kitty" { spawn-sh "kitty"; }
     MOD+SHIFT+B                         hotkey-overlay-title="Open Secondary Browser: chrome" { spawn-sh "google-chrome-stable --enable-features=TouchpadOverscrollHistoryNavigation"; }
     MOD+SHIFT+Q                         hotkey-overlay-title="Lock Screen: gtklock" { spawn-sh "gtklock"; }
     MOD+A                               hotkey-overlay-title="Open App Launcher: vicinae" { spawn-sh "vicinae toggle"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox-developer-edition"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: Zen" { spawn-sh "zen-browser"; }
     MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
     MOD+ALT+E                           hotkey-overlay-title="File Manager: Yazi" { spawn-sh "yazi"; }
     MOD+W                               hotkey-overlay-title="Open Wallpaper Selector" { spawn-sh "$HOME/.config/scripts/bgselector.sh"; }
@@ -185,7 +185,7 @@ binds {
     // Window Modes
     MOD+T                               { toggle-window-floating; }
     MOD+F                               { fullscreen-window; }
-    MOD+M                               { maximize-column; }
+    MOD+M                               { maximize-window-to-edges; }
     // MOD+W                               { toggle-column-tabbed-display; }
 
     // Utils
@@ -204,6 +204,9 @@ binds {
 layout {
     gaps 0
     center-focused-column "on-overflow"
+    always-center-single-column
+    empty-workspace-above-first
+    default-column-display "tabbed"
     background-color "transparent"
 
     preset-column-widths {
@@ -212,18 +215,63 @@ layout {
         proportion 0.66667
     }
 
+    default-column-width { proportion 0.5; }
+
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
     focus-ring {
-        width 0
-        active-color "#1E1E2E"
+        // off
+        off
+    }
+
+    border {
+        on
+        // on
+        width 2
+        active-color "#CDD6F4"
+        inactive-color "#1E1E2E"
+        urgent-color "#9b0000"
+        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view" in="srgb-linear"
+        // urgent-gradient from="#800" to="#a33" angle=45
+    }
+
+    tab-indicator {
+        // off
+        on
+        hide-when-single-tab
+        place-within-column
+        gap 0
+        width 4
+        length total-proportion=1.0
+        position "right"
+        gaps-between-tabs 2
+        corner-radius 0
+        active-color "#CDD6F4"
+        inactive-color "#1E1E2E"
+        urgent-color "blue"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
     }
 
     insert-hint {
-        off
-        color "#1E1E2E"
+        // off
+        on
+        color "#CDD6F4"
+        // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
 
-    struts {}
-
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
 }
 
 // Animation Settings
@@ -364,12 +412,6 @@ window-rule {
 window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
-}
-
-// Inactive window transparency
-window-rule {
-    match is-active=false
-    opacity 0.9
 }
 
 // Environment Variables

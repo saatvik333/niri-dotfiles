@@ -16,7 +16,6 @@ backend = "fastresize"
 # What color space to use to produce and select the most prominent colors:
 # lab - labmixed - lch - lchmixed
 color_space = "lab"
-
 # Use the most prominent colors in a way that makes sense, a scheme color palette:
 # dark - dark16 - darkcomp - darkcomp16
 # light - light16 - lightcomp - lightcomp16
@@ -33,7 +32,7 @@ check_contrast = true
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
 # decreases it (on a scheme with strong and vivid colors)
-#saturation = 35
+#saturation = 40
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
 #alpha = 100
@@ -64,8 +63,12 @@ rofi = { src = 'rofi.rasi', dst = '~/.config/rofi/colors/wallust.rasi' }
 
 mako = { src = 'mako', dst = '~/.config/mako/config' }
 
+spicetify = { src = 'spicetify.ini', dst = '~/.config/spicetify/Themes/Wallust/color.ini' }
+
+telegram = { src = 'telegram', dst = '~/.local/share/TelegramDesktop/tdata/wallust.tdesktop-theme' }
+
 zathurarc = { src = 'zathurarc', dst = '~/.config/zathura/zathurarc' }
 
-vicinae = { src = 'vicinae.toml', dst = '~/.local/share/vicinae/themes/wallust.toml'}
+vicinae = { src = 'vicinae.toml', dst = '~/.local/share/vicinae/themes/wallust.toml' }
 
-zed = { src = 'zed.json', dst = '~/.config/zed/themes/wallust.json'}
+zed = { src = 'zed.json', dst = '~/.config/zed/themes/wallust.json' }
