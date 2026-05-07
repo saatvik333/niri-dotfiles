@@ -1,8 +1,10 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
+    name = "cpp-snippets",
+    dir = vim.fn.stdpath("config"),
+    ft = { "cpp" },
     dependencies = {
-      "rafamadriz/friendly-snippets",
+      "L3MON4D3/LuaSnip",
     },
     config = function()
       local ls = require("luasnip")
@@ -10,9 +12,7 @@ return {
       local t = ls.text_node
       local i = ls.insert_node
 
-      -- C++ snippets
       ls.add_snippets("cpp", {
-        -- Competitive programming template
         s("cptemp", {
           t({
             "#include <bits/stdc++.h>",
@@ -23,7 +23,7 @@ return {
             "#define endl '\\n'",
             "",
             "void solve() {",
-            "  "
+            "  ",
           }),
           i(1),
           t({
@@ -43,28 +43,26 @@ return {
             "  }",
             "  ",
             "  return 0;",
-            "}"
-          })
+            "}",
+          }),
         }),
 
-        -- Simple main template
         s("mainsimple", {
           t({
             "#include <bits/stdc++.h>",
             "using namespace std;",
             "",
             "int main() {",
-            "  "
+            "  ",
           }),
           i(1),
           t({
             "",
             "  return 0;",
-            "}"
-          })
+            "}",
+          }),
         }),
 
-        -- Basic template
         s("cppbasic", {
           t({
             "#include <iostream>",
@@ -73,17 +71,16 @@ return {
             "using namespace std;",
             "",
             "int main() {",
-            "  "
+            "  ",
           }),
           i(1),
           t({
             "",
             "  return 0;",
-            "}"
-          })
+            "}",
+          }),
         }),
 
-        -- Algorithm practice template
         s("algotemplate", {
           t({
             "#include <iostream>",
@@ -97,17 +94,16 @@ return {
             "using namespace std;",
             "",
             "int main() {",
-            "  "
+            "  ",
           }),
           i(1),
           t({
             "",
             "  return 0;",
-            "}"
-          })
+            "}",
+          }),
         }),
 
-        -- Class template
         s("classtemplate", {
           t({
             "#include <iostream>",
@@ -115,7 +111,7 @@ return {
             "",
             "class Solution {",
             "public:",
-            "  "
+            "  ",
           }),
           i(1),
           t({
@@ -124,14 +120,14 @@ return {
             "",
             "int main() {",
             "  Solution sol;",
-            "  "
+            "  ",
           }),
           i(2),
           t({
             "",
             "  return 0;",
-            "}"
-          })
+            "}",
+          }),
         }),
       })
     end,

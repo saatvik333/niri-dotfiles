@@ -1,3 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+if vim.loader then
+  vim.loader.enable()
+end
+
+require("config.early")
 require("config.lazy")
-vim.opt.autochdir = true
