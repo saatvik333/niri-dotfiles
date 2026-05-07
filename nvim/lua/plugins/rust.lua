@@ -1,13 +1,4 @@
-local M = {
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      latex = { enabled = false },
-    },
-  },
-
+return {
   {
     "mrcjkb/rustaceanvim",
     config = function(_, opts)
@@ -31,11 +22,3 @@ local M = {
     end,
   },
 }
-
-function M.check()
-  local health = vim.health
-  health.start("plugins")
-  health.ok("Custom plugin specs are loadable")
-end
-
-return M

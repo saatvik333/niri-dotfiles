@@ -170,8 +170,6 @@ int main() {
       vim.api.nvim_create_user_command("CppSimple", function()
         apply_template(templates[2])
       end, { desc = "Apply simple main template" })
-
-      maybe_prompt_cpp_template()
     end,
   },
 }

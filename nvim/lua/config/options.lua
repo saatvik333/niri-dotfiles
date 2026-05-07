@@ -14,3 +14,4 @@ do
 end
 
 vim.opt.backup = false
+vim.o.autoread = true

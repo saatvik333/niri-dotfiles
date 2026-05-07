@@ -2,7 +2,6 @@ return {
   {
     "nickjvandyke/opencode.nvim",
     version = "*",
-    lazy = false,
     dependencies = {
       {
         "folke/snacks.nvim",
@@ -27,9 +26,6 @@ return {
         },
       },
     },
-    init = function()
-      vim.o.autoread = true
-    end,
     keys = {
       {
         "<leader>oa",
