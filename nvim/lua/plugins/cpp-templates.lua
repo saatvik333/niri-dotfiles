@@ -10,100 +10,11 @@ return {
       { "<leader>cS", "<cmd>CppSimple<cr>", desc = "C++ Simple Main Template" },
     },
     config = function()
-      local templates = {
-        {
-          name = "Competitive Programming",
-          description = "Full competitive programming template with fast I/O",
-          content = [[#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-typedef long double ld;
-#define endl '\n'
-
-void solve() {
-
-}
-
-int main() {
-  // Fast IO
-  ios::sync_with_stdio(0);
-  cin.tie(NULL);
-  cout.tie(NULL);
-
-  ll T;
-  cin >> T;
-  while (T--) {
-    solve();
-  }
-
-  return 0;
-}]],
-        },
-        {
-          name = "Simple Main",
-          description = "Basic C++ template with main function",
-          content = [[#include <bits/stdc++.h>
-using namespace std;
-
-int main() {
-
-  return 0;
-}]],
-        },
-        {
-          name = "Basic Template",
-          description = "Minimal C++ template with common headers",
-          content = [[#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
-int main() {
-
-  return 0;
-}]],
-        },
-        {
-          name = "Algorithm Practice",
-          description = "Template for algorithm practice with common includes",
-          content = [[#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <map>
-#include <set>
-#include <queue>
-#include <stack>
-using namespace std;
-
-int main() {
-
-  return 0;
-}]],
-        },
-        {
-          name = "Class Template",
-          description = "Template with a basic class structure",
-          content = [[#include <iostream>
-using namespace std;
-
-class Solution {
-public:
-
-};
-
-int main() {
-  Solution sol;
-
-  return 0;
-}]],
-        },
-      }
+      local templates = require("util.cpp_templates")
 
       local function apply_template(template)
         local buf = vim.api.nvim_get_current_buf()
-        local lines = vim.split(template.content, "\n")
+        local lines = templates.to_lines(template)
         vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
         for i, line in ipairs(lines) do
@@ -117,7 +28,7 @@ int main() {
       end
 
       local function select_template()
-        vim.ui.select(templates, {
+        vim.ui.select(templates.list, {
           prompt = "Select C++ Template:",
           format_item = function(item)
             return item.name .. " - " .. item.description
@@ -147,7 +58,7 @@ int main() {
         vim.defer_fn(function()
           local choice = vim.fn.confirm("Use C++ template?", "&Yes\n&No\n&Select", 1)
           if choice == 1 then
-            apply_template(templates[1])
+            apply_template(templates.list[1])
           elseif choice == 3 then
             select_template()
           end
@@ -164,11 +75,11 @@ int main() {
       end, { desc = "Select C++ template" })
 
       vim.api.nvim_create_user_command("CppCompetitive", function()
-        apply_template(templates[1])
+        apply_template(templates.list[1])
       end, { desc = "Apply competitive programming template" })
 
       vim.api.nvim_create_user_command("CppSimple", function()
-        apply_template(templates[2])
+        apply_template(templates.list[2])
       end, { desc = "Apply simple main template" })
     end,
   },

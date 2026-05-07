@@ -1,4 +1,5 @@
 return {
+  { "nvim-mini/mini.comment", enabled = false },
   {
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },

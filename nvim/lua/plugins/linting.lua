@@ -1,3 +1,15 @@
+local has = setmetatable({}, {
+  __index = function(t, name)
+    local ok = vim.fn.executable(name) == 1
+    rawset(t, name, ok)
+    return ok
+  end,
+})
+
+local function typos_config_present(filename)
+  return vim.fs.find({ "typos.toml", ".typos.toml" }, { path = filename, upward = true })[1] ~= nil
+end
+
 return {
   {
     "mfussenegger/nvim-lint",
@@ -15,34 +27,43 @@ return {
       linters = {
         typos = {
           condition = function(ctx)
-            return vim.fn.executable("typos") == 1
-              and vim.fs.find({ "typos.toml", ".typos.toml" }, { path = ctx.filename, upward = true })[1] ~= nil
+            if not has["typos"] then
+              return false
+            end
+            local bufnr = ctx.bufnr or vim.api.nvim_get_current_buf()
+            local cached = vim.b[bufnr].typos_enabled
+            if cached ~= nil then
+              return cached
+            end
+            local enabled = typos_config_present(ctx.filename)
+            vim.b[bufnr].typos_enabled = enabled
+            return enabled
           end,
         },
         markdownlint = {
           args = { "--stdin", "--disable", "MD013" },
           condition = function()
-            return vim.fn.executable("markdownlint") == 1
+            return has["markdownlint"]
           end,
         },
         yamllint = {
           condition = function()
-            return vim.fn.executable("yamllint") == 1
+            return has["yamllint"]
           end,
         },
         hadolint = {
           condition = function()
-            return vim.fn.executable("hadolint") == 1
+            return has["hadolint"]
           end,
         },
         shellcheck = {
           condition = function()
-            return vim.fn.executable("shellcheck") == 1
+            return has["shellcheck"]
           end,
         },
         ruff = {
           condition = function()
-            return vim.fn.executable("ruff") == 1
+            return has["ruff"]
           end,
         },
       },

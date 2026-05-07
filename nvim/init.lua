@@ -1,6 +1,3 @@
-if vim.loader then
-  vim.loader.enable()
-end
-
+vim.loader.enable()
 require("config.early")
 require("config.lazy")

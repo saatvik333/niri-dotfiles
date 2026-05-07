@@ -8,128 +8,25 @@ return {
     },
     config = function()
       local ls = require("luasnip")
-      local s = ls.snippet
-      local t = ls.text_node
-      local i = ls.insert_node
+      local templates = require("util.cpp_templates")
 
-      ls.add_snippets("cpp", {
-        s("cptemp", {
-          t({
-            "#include <bits/stdc++.h>",
-            "using namespace std;",
-            "",
-            "typedef long long ll;",
-            "typedef long double ld;",
-            "#define endl '\\n'",
-            "",
-            "void solve() {",
-            "  ",
-          }),
-          i(1),
-          t({
-            "",
-            "}",
-            "",
-            "int main() {",
-            "  // Fast IO",
-            "  ios::sync_with_stdio(0);",
-            "  cin.tie(NULL);",
-            "  cout.tie(NULL);",
-            "  ",
-            "  ll T;",
-            "  cin >> T;",
-            "  while (T--) {",
-            "    solve();",
-            "  }",
-            "  ",
-            "  return 0;",
-            "}",
-          }),
-        }),
+      local function build_snippet(template)
+        local nodes = {}
+        for _, seg in ipairs(template.segments) do
+          if seg.kind == "text" then
+            table.insert(nodes, ls.text_node(seg.lines))
+          elseif seg.kind == "insert" then
+            table.insert(nodes, ls.insert_node(seg.index))
+          end
+        end
+        return ls.snippet(template.trigger, nodes)
+      end
 
-        s("mainsimple", {
-          t({
-            "#include <bits/stdc++.h>",
-            "using namespace std;",
-            "",
-            "int main() {",
-            "  ",
-          }),
-          i(1),
-          t({
-            "",
-            "  return 0;",
-            "}",
-          }),
-        }),
-
-        s("cppbasic", {
-          t({
-            "#include <iostream>",
-            "#include <vector>",
-            "#include <string>",
-            "using namespace std;",
-            "",
-            "int main() {",
-            "  ",
-          }),
-          i(1),
-          t({
-            "",
-            "  return 0;",
-            "}",
-          }),
-        }),
-
-        s("algotemplate", {
-          t({
-            "#include <iostream>",
-            "#include <vector>",
-            "#include <algorithm>",
-            "#include <string>",
-            "#include <map>",
-            "#include <set>",
-            "#include <queue>",
-            "#include <stack>",
-            "using namespace std;",
-            "",
-            "int main() {",
-            "  ",
-          }),
-          i(1),
-          t({
-            "",
-            "  return 0;",
-            "}",
-          }),
-        }),
-
-        s("classtemplate", {
-          t({
-            "#include <iostream>",
-            "using namespace std;",
-            "",
-            "class Solution {",
-            "public:",
-            "  ",
-          }),
-          i(1),
-          t({
-            "",
-            "};",
-            "",
-            "int main() {",
-            "  Solution sol;",
-            "  ",
-          }),
-          i(2),
-          t({
-            "",
-            "  return 0;",
-            "}",
-          }),
-        }),
-      })
+      local snippets = {}
+      for _, template in ipairs(templates.list) do
+        table.insert(snippets, build_snippet(template))
+      end
+      ls.add_snippets("cpp", snippets)
     end,
   },
 }

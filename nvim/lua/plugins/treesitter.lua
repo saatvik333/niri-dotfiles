@@ -41,8 +41,6 @@ return {
         "yaml",
       })
       opts.ensure_installed = LazyVim.dedup(opts.ensure_installed)
-      opts.highlight = opts.highlight or {}
-      opts.highlight.enable = true
     end,
   },
 }

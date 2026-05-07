@@ -13,5 +13,6 @@ do
   vim.opt.undodir = { undo_dir .. "//", "." }
 end
 
-vim.opt.backup = false
 vim.o.autoread = true
+vim.opt.modeline = false
+vim.opt.exrc = false

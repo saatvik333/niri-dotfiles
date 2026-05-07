@@ -5,10 +5,7 @@ return {
       news = {
         lazyvim = false,
       },
-      colorscheme = function()
-        require("lazy").load({ plugins = { "neopywal" } })
-        vim.cmd.colorscheme("neopywal-dark")
-      end,
+      colorscheme = "neopywal-dark",
     },
   },
 }

@@ -11,14 +11,15 @@ return {
           end
           tree.__natural_sort_patched = true
 
+          -- Patches snacks.explorer.tree.walk to sort numerically (file2 before file10).
+          -- TODO: drop once snacks.nvim ships a native sort option.
           local function chunk(str, idx)
-            local sub = str:sub(idx)
-            local digits = sub:match("^(%d+)")
-            if digits then
-              return true, digits, idx + #digits
+            local s, e, digits = str:find("^(%d+)", idx)
+            if s then
+              return true, digits, e + 1
             end
-            local nondigits = sub:match("^(%D+)")
-            return false, nondigits or "", idx + #(nondigits or "")
+            s, e, digits = str:find("^(%D+)", idx)
+            return false, digits or "", (e or idx) + 1
           end
 
           local function natural_lt(a, b)
