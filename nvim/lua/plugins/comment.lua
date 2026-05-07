@@ -8,7 +8,7 @@ return {
     config = function()
       require("Comment").setup({
         pre_hook = function(ctx)
-          if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          if vim.bo.buftype == "prompt" then
             return
           end
           local U = require("Comment.utils")

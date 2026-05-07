@@ -16,7 +16,7 @@ return {
         typos = {
           condition = function(ctx)
             return vim.fn.executable("typos") == 1
-              and vim.fs.find({ "typos.toml", ".typos.toml" }, { path = ctx.filename, upward = true })[1]
+              and vim.fs.find({ "typos.toml", ".typos.toml" }, { path = ctx.filename, upward = true })[1] ~= nil
           end,
         },
         markdownlint = {

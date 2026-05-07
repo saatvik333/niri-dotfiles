@@ -37,7 +37,6 @@ return {
           prepend_args = { "--indent-type", "Spaces", "--indent-width", "2", "--column-width", "120" },
         },
         ["clang-format"] = {
-          command = "/usr/bin/clang-format",
           prepend_args = { "--style=Google" },
         },
         ruff_organize_imports = {
