@@ -1,0 +1,62 @@
+/* Wallust Obsidian Theme - Updated Version */
+.theme-dark, .theme-light {
+    --background-primary: rgba({{background | rgb}}, 0.8) !important;
+    --background-primary-alt: rgba({{color0 | rgb}}, 0.8) !important;
+    --background-secondary: rgba({{color0 | rgb}}, 0.8) !important;
+    --background-secondary-alt: rgba({{color8 | rgb}}, 0.8) !important;
+    
+    {% if background[1] in ["a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F", "8", "9"] %}
+    --text-normal: #000000 !important;
+    --text-muted: #202020 !important;
+    --text-faint: #555555 !important;
+    
+    --text-accent: {{color4 | darken(0.15)}} !important;
+    --interactive-accent: {{color4 | darken(0.15)}} !important;
+    --interactive-accent-hover: {{color12 | darken(0.15)}} !important;
+    {% else %}
+    --text-normal: #ffffff !important;
+    --text-muted: #e8ecef !important;
+    --text-faint: #a0aab2 !important;
+    
+    --text-accent: {{color4 | lighten(0.15)}} !important;
+    --interactive-accent: {{color4 | lighten(0.15)}} !important;
+    --interactive-accent-hover: {{color12 | lighten(0.15)}} !important;
+    {% endif %}
+    
+    /* Scrollbars */
+    --scrollbar-bg: rgba({{background | rgb}}, 0.8) !important;
+    --scrollbar-thumb-bg: {{color8}} !important;
+
+    /* Header, Titlebar & Tabs */
+    --titlebar-background: var(--background-secondary) !important;
+    --titlebar-background-focused: var(--background-secondary) !important;
+    --titlebar-text: var(--text-muted) !important;
+    --titlebar-text-focused-active: var(--text-normal) !important;
+    --titlebar-border-color: transparent !important;
+    
+    --tab-container-background: var(--background-secondary) !important;
+    --tab-background-active: var(--background-primary) !important;
+    --tab-background-active-hover: var(--background-primary) !important;
+    --tab-background-inactive: var(--background-secondary) !important;
+    --tab-background-inactive-hover: var(--background-secondary-alt) !important;
+    --tab-text-color: var(--text-muted) !important;
+    --tab-text-color-active: var(--text-normal) !important;
+    
+    --tab-divider-color: transparent !important;
+    --tab-outline-color: transparent !important;
+
+    /* Borders & Dividers */
+    --background-modifier-border: rgba({{color8 | rgb}}, 0.4) !important;
+    --divider-color: rgba({{color8 | rgb}}, 0.4) !important;
+    --tab-divider-color: rgba({{color8 | rgb}}, 0.2) !important;
+    --tab-outline-color: rgba({{color8 | rgb}}, 0.2) !important;
+}
+
+/* Force body background just in case */
+body {
+    background-color: rgba({{background | rgb}}, 0.8) !important;
+}
+
+.app-container {
+    background-color: transparent !important;
+}

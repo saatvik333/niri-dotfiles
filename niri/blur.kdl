@@ -1,0 +1,55 @@
+// ---------------------------------------------------------------------------
+// Global blur settings
+// ---------------------------------------------------------------------------
+blur {
+    passes 3
+    offset 1.0
+    noise 0.02
+    saturation 1
+}
+
+// ---------------------------------------------------------------------------
+// Terminal blur window rules
+// ---------------------------------------------------------------------------
+window-rule {
+    match app-id="^com.mitchellh.ghostty$"
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="^kitty$"
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="^Alacritty$"
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="^code$"
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="^dev.zed.Zed$"
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="^obsidian$"
+    opacity 0.8
+    background-effect {
+        blur true
+    }
+}
