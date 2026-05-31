@@ -1,0 +1,24 @@
+{
+  "dark": {
+    "background": "{{background}}",
+    "backgroundAlt": "{{color0}}",
+    "foreground": "{{foreground}}",
+    "foregroundDim": "{{color7}}",
+    "border": "{{color8}}",
+    "highlight": "{{color4}}",
+    "alert": "{{color1}}",
+    "success": "{{color2}}",
+    "info": "{{color6}}"
+  },
+  "light": {
+    "background": "{{background}}",
+    "backgroundAlt": "{{color0}}",
+    "foreground": "{{foreground}}",
+    "foregroundDim": "{{color7}}",
+    "border": "{{color8}}",
+    "highlight": "{{color4}}",
+    "alert": "{{color1}}",
+    "success": "{{color2}}",
+    "info": "{{color6}}"
+  }
+}

@@ -75,7 +75,7 @@ acquire_lock() {
     fi
     
     echo $$ >"$lock_file"
-    trap "rm -f '$lock_file'" EXIT INT TERM
+    trap 'rm -f "$lock_file"' EXIT INT TERM
 }
 
 # --- Dependency Validation ---

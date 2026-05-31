@@ -7,7 +7,7 @@
 windowBg: {{background}};
 windowFg: {{foreground}};
 // Use color0 for surfaces (usually distinct from background)
-windowBgOver: {{color0}};
+windowBgOver: {{background | lighten(0.03)}};
 windowBgRipple: {{color8}};
 
 // Text Variations
@@ -24,7 +24,7 @@ windowActiveTextFg: {{color4}};
 
 // Shadows
 windowShadowFg: #000000;
-windowShadowFgFallback: {{color0}};
+windowShadowFgFallback: {{background | lighten(0.03)}};
 shadowFg: #00000018;
 
 // Slide Animations
@@ -50,7 +50,7 @@ activeLineFgError: {{color1}};
 
 // Light Buttons
 lightButtonBg: windowBg;
-lightButtonBgOver: {{color0}};
+lightButtonBgOver: {{background | lighten(0.03)}};
 lightButtonBgRipple: {{color8}};
 lightButtonFg: windowActiveTextFg;
 lightButtonFgOver: lightButtonFg;
@@ -69,17 +69,17 @@ outlineButtonBgRipple: lightButtonBgRipple;
 
 // --- Menus ---
 menuBg: windowBg;
-menuBgOver: {{color0}};
+menuBgOver: {{background | lighten(0.03)}};
 menuBgRipple: {{color8}};
 menuIconFg: {{foreground}}b3;
 menuIconFgOver: {{foreground}};
 menuSubmenuArrowFg: {{foreground}}80;
 menuFgDisabled: {{foreground}}60;
-menuSeparatorFg: {{color0}};
+menuSeparatorFg: {{background | lighten(0.03)}};
 
 // --- Scrollbars ---
-scrollBarBg: {{color0}}53;
-scrollBarBgOver: {{color0}}7a;
+scrollBarBg: {{background | lighten(0.03)}}53;
+scrollBarBgOver: {{background | lighten(0.03)}}7a;
 scrollBg: {{background}}1a;
 scrollBgOver: {{background}}2c;
 
@@ -99,9 +99,9 @@ filterInputActiveBg: windowBg;
 checkboxFg: {{foreground}}80;
 
 // --- Sliders & Tooltips ---
-sliderBgInactive: {{color0}};
+sliderBgInactive: {{background | lighten(0.03)}};
 sliderBgActive: windowBgActive;
-tooltipBg: {{color0}};
+tooltipBg: {{background | lighten(0.03)}};
 tooltipFg: {{foreground}};
 tooltipBorderFg: {{color8}};
 importantTooltipBg: toastBg;
@@ -113,7 +113,7 @@ titleBg: windowBg;
 titleBgActive: titleBg;
 titleShadow: #00000000;
 titleButtonFg: {{foreground}}80;
-titleButtonBgOver: {{color0}};
+titleButtonBgOver: {{background | lighten(0.03)}};
 titleButtonFgOver: {{foreground}};
 titleButtonCloseBgOver: {{color1}};
 titleButtonCloseFgOver: windowFgActive;
@@ -182,7 +182,7 @@ introCoverPlaneTop: {{foreground}};
 
 // --- Sidebar (Chat List) ---
 sideBarBg: {{background}};
-sideBarBgActive: {{color0}};
+sideBarBgActive: {{background | lighten(0.03)}};
 sideBarBgRipple: {{color8}};
 sideBarTextFg: windowFg;
 sideBarTextFgActive: {{foreground}};
@@ -279,7 +279,7 @@ historySystemBg: {{color8}}7f;
 historySystemBgSelected: {{color4}}a2;
 historySystemFg: windowFgActive;
 
-historyUnreadBarBg: {{color0}};
+historyUnreadBarBg: {{background | lighten(0.03)}};
 historyUnreadBarBorder: shadowFg;
 historyUnreadBarFg: {{color4}};
 historyForwardChooseBg: layerBg;
@@ -311,7 +311,7 @@ historyScrollBg: {{background}}4c;
 historyScrollBgOver: {{background}}6b;
 
 // --- Message Bubbles ---
-msgInBg: {{color0}};
+msgInBg: {{background | lighten(0.03)}};
 msgInBgSelected: {{color8}};
 msgOutBg: {{background}};
 msgOutBgSelected: {{color8}};
@@ -536,11 +536,11 @@ callHangupRipple: {{color1}}cc;
 callCancelBg: {{color1}};
 callCancelFg: windowFg;
 callCancelRipple: {{color1}}cc;
-callMuteRipple: {{color0}};
+callMuteRipple: {{background | lighten(0.03)}};
 callBarBg: {{color4}};
 callBarBgMuted: {{color8}};
 callBarFg: windowFg;
-callBarMuteRipple: {{color0}};
+callBarMuteRipple: {{background | lighten(0.03)}};
 callBarUnmuteRipple: {{color2}};
 callIconBg: {{color2}};
 callIconBgActive: {{color4}};

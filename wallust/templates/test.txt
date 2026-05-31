@@ -1,0 +1,3 @@
+background = {{background}}
+first_char = {{background[1]}}
+is_light = {{background[1] in ["a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F", "8", "9"]}}

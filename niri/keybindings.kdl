@@ -1,0 +1,162 @@
+// ---------------------------------------------------------------------------
+// Keybindings
+// ---------------------------------------------------------------------------
+binds {
+    // -------------------------------------------------------------------------
+    // Help / overlay
+    // -------------------------------------------------------------------------
+    MOD+SHIFT+ESCAPE                    { show-hotkey-overlay; }
+
+    // -------------------------------------------------------------------------
+    // App launchers
+    // -------------------------------------------------------------------------
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: Kitty" { spawn-sh "kitty"; }
+    MOD+ALT+RETURN                      hotkey-overlay-title="Open Terminal: Alacritty" { spawn-sh "alacritty"; }
+    MOD+SHIFT+B                         hotkey-overlay-title="Open Secondary Browser: Brave" { spawn-sh "brave-beta --enable-features=TouchpadOverscrollHistoryNavigation"; }
+    MOD+SHIFT+Q                         hotkey-overlay-title="Lock Screen" { spawn-sh "qs ipc -p ~/Codes/projects/sevens-shell/src/shell.qml call lock lock"; }
+    MOD+A                               hotkey-overlay-title="Open App Launcher: Vicinae" { spawn-sh "vicinae toggle"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: Zen Browser" { spawn-sh "zen-browser"; }
+    MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
+    MOD+ALT+E                           hotkey-overlay-title="File Manager: Yazi" { spawn-sh "yazi"; }
+    MOD+D                               hotkey-overlay-title="Wayscriber: Screen Annotation" { spawn-sh "pkill -SIGUSR1 wayscriber"; }
+    MOD+C                         hotkey-overlay-title="Sevens Shell Control Center" { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src/shell.qml ipc call control-center open"; }
+    MOD+W                               hotkey-overlay-title="Sevens Shell Wallpaper Selector" { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src/shell.qml ipc call wallpaper toggle"; }
+
+    // -------------------------------------------------------------------------
+    // Media keys (allowed while locked)
+    // -------------------------------------------------------------------------
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src/shell.qml ipc call mediactl volume_up"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl volume_down"; }
+    XF86MonBrightnessUp                 allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl brightness_up"; }
+    XF86MonBrightnessDown               allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl brightness_down"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl volume_mute"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl mic_mute"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl next_track"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl play_pause"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl play_pause"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "qs -p ~/Codes/projects/sevens-shell/src ipc call mediactl prev_track"; }
+
+    // -------------------------------------------------------------------------
+    // Window management (vim-friendly)
+    // -------------------------------------------------------------------------
+    MOD+Q                               { close-window; }
+
+    // Focus: h/l for columns, j/k for workspaces
+    MOD+H                               { focus-column-left; }
+    MOD+J                               { focus-workspace-down; }
+    MOD+K                               { focus-workspace-up; }
+    MOD+L                               { focus-column-right; }
+
+    MOD+LEFT                            { focus-column-left; }
+    MOD+DOWN                            { focus-window-down; }
+    MOD+UP                              { focus-window-up; }
+    MOD+RIGHT                           { focus-column-right; }
+
+    // Move windows within workspace (vim-friendly)
+    MOD+SHIFT+LEFT                      { move-column-left; }
+    MOD+SHIFT+DOWN                      { move-window-down; }
+    MOD+SHIFT+UP                        { move-window-up; }
+    MOD+SHIFT+RIGHT                     { move-column-right; }
+
+    MOD+SHIFT+H                         { move-column-left; }
+    MOD+SHIFT+J                         { move-column-to-workspace-down; }
+    MOD+SHIFT+K                         { move-column-to-workspace-up; }
+    MOD+SHIFT+L                         { move-column-right; }
+
+    // Move to workspace edges
+    MOD+SHIFT+HOME                      { move-column-to-first; }
+    MOD+SHIFT+END                       { move-column-to-last; }
+
+    MOD+HOME                            { focus-column-first; }
+    MOD+END                             { focus-column-last; }
+
+    // Monitor management: focus
+    MOD+CTRL+LEFT                       { focus-monitor-left; }
+    MOD+CTRL+RIGHT                      { focus-monitor-right; }
+    MOD+CTRL+UP                         { focus-monitor-up; }
+    MOD+CTRL+DOWN                       { focus-monitor-down; }
+
+    MOD+CTRL+H                          { focus-monitor-left; }
+    MOD+CTRL+L                          { focus-monitor-right; }
+    MOD+CTRL+K                          { focus-monitor-up; }
+    MOD+CTRL+J                          { focus-monitor-down; }
+
+    // Monitor management: move columns
+    MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+
+    MOD+SHIFT+CTRL+H                    { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+L                    { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+K                    { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+J                    { move-column-to-monitor-down; }
+
+    // Workspace management
+    MOD+ESCAPE                          hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
+    MOD+WHEELSCROLLDOWN                 cooldown-ms=100 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP                   cooldown-ms=100 { focus-workspace-up; }
+
+    // Move columns between workspaces (mouse wheel)
+    MOD+SHIFT+WHEELSCROLLDOWN           cooldown-ms=100 { move-column-to-workspace-down; }
+    MOD+SHIFT+WHEELSCROLLUP             cooldown-ms=100 { move-column-to-workspace-up; }
+
+    // Column navigation with mouse
+    MOD+WHEELSCROLLRIGHT                { focus-column-right; }
+    MOD+WHEELSCROLLLEFT                 { focus-column-left; }
+    MOD+CTRL+WHEELSCROLLRIGHT           { move-column-right; }
+    MOD+CTRL+WHEELSCROLLLEFT            { move-column-left; }
+
+    // Numbered Workspaces
+    MOD+1                               { focus-workspace 1; }
+    MOD+2                               { focus-workspace 2; }
+    MOD+3                               { focus-workspace 3; }
+    MOD+4                               { focus-workspace 4; }
+    MOD+5                               { focus-workspace 5; }
+    MOD+6                               { focus-workspace 6; }
+    MOD+7                               { focus-workspace 7; }
+    MOD+8                               { focus-workspace 8; }
+    MOD+9                               { focus-workspace 9; }
+
+    // Move windows to numbered workspaces with MOD+SHIFT
+    MOD+SHIFT+1                         { move-column-to-workspace 1; }
+    MOD+SHIFT+2                         { move-column-to-workspace 2; }
+    MOD+SHIFT+3                         { move-column-to-workspace 3; }
+    MOD+SHIFT+4                         { move-column-to-workspace 4; }
+    MOD+SHIFT+5                         { move-column-to-workspace 5; }
+    MOD+SHIFT+6                         { move-column-to-workspace 6; }
+    MOD+SHIFT+7                         { move-column-to-workspace 7; }
+    MOD+SHIFT+8                         { move-column-to-workspace 8; }
+    MOD+SHIFT+9                         { move-column-to-workspace 9; }
+
+    MOD+TAB                             { focus-workspace-previous; }
+
+    // Layout / sizing
+    MOD+SHIFT+C                               { center-column; }
+    MOD+CTRL+C                          { center-visible-columns; }
+    MOD+BRACKETLEFT                     { set-column-width "-10%"; }
+    MOD+BRACKETRIGHT                    { set-column-width "+10%"; }
+    MOD+SHIFT+BRACKETLEFT               { set-window-height "-10%"; }
+    MOD+SHIFT+BRACKETRIGHT              { set-window-height "+10%"; }
+
+    // Layout / sizing (mouse wheel)
+    MOD+CTRL+WHEELSCROLLDOWN            { set-window-height "-5%"; }
+    MOD+CTRL+WHEELSCROLLUP              { set-window-height "+5%"; }
+
+    // Window modes
+    MOD+F                               { fullscreen-window; }
+    MOD+SHIFT+F                         { toggle-windowed-fullscreen; }
+    MOD+M                               { maximize-column; }
+    MOD+SHIFT+M                         { maximize-window-to-edges; }
+    MOD+V                               { toggle-window-floating; }
+    MOD+SHIFT+V                         { switch-focus-between-floating-and-tiling; }
+    // MOD+W                               { toggle-column-tabbed-display; }
+
+    // Utilities
+    MOD+S                               { screenshot; }
+    MOD+SHIFT+S                         { screenshot-screen write-to-disk=true; }
+    MOD+CTRL+S                          { screenshot-window write-to-disk=true; }
+    MOD+R                               repeat=false { spawn-sh "~/.config/scripts/voxtype.sh"; }
+    MOD+P                               { spawn-sh "pgrep -x hyprpicker >/dev/null || hyprpicker"; }
+    MOD+G                               { spawn-sh "$HOME/.config/scripts/google-lens.sh"; }
+}

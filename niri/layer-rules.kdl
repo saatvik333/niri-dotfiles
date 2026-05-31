@@ -1,0 +1,22 @@
+// ---------------------------------------------------------------------------
+// Layer rules
+// ---------------------------------------------------------------------------
+layer-rule {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+    geometry-corner-radius 0
+}
+
+layer-rule {
+    match namespace="quickshell"
+
+    background-effect {
+        blur true
+    }
+
+    popups {
+        background-effect {
+            blur true
+        }
+    }
+}

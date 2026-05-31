@@ -1,0 +1,11 @@
+[Unit]
+Description=Weekly auto-update for Sevens Shell
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+RandomizedDelaySec=30min
+Unit=sevens-autoupdate.service
+
+[Install]
+WantedBy=timers.target

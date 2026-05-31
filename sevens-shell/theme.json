@@ -1,0 +1,24 @@
+{
+  "dark": {
+    "background": "#1E1E2E",
+    "backgroundAlt": "#45475A",
+    "foreground": "#CDD6F4",
+    "foregroundDim": "#BAC2DE",
+    "border": "#585B70",
+    "highlight": "#89B4FA",
+    "alert": "#F38BA8",
+    "success": "#A6E3A1",
+    "info": "#94E2D5"
+  },
+  "light": {
+    "background": "#1E1E2E",
+    "backgroundAlt": "#45475A",
+    "foreground": "#CDD6F4",
+    "foregroundDim": "#BAC2DE",
+    "border": "#585B70",
+    "highlight": "#89B4FA",
+    "alert": "#F38BA8",
+    "success": "#A6E3A1",
+    "info": "#94E2D5"
+  }
+}

@@ -9,25 +9,102 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "imports": [],
+   "close_on_focus_loss": false,
+   "consider_preedit": false,
+   "pop_to_root_on_close": false,
+   "escape_key_behavior": "navigate_back",
+   "favicon_service": "twenty",
    "keybinding": "default",
+   "search_files_in_root": false,
    "font": {
-      "normal": {}
-   },
-   "theme": {
-      "dark": {
-         "name": "wallust"
+      "rendering": "qt",
+      "normal": {
+         "family": "auto",
+         "size": 11
       }
    },
-   "launcher_window": {
-      "opacity": 1
+   "theme": {
+      "light": {
+         "name": "wallust",
+         "icon_theme": "auto"
+      },
+      "dark": {
+         "name": "wallust",
+         "icon_theme": "auto"
+      }
    },
-   "keybinds": {},
+   "telemetry": {
+      "system_info": false
+   },
+   "launcher_window": {
+      "opacity": 0.8,
+      "client_side_decorations": {
+         "enabled": true,
+         "rounding": 8,
+         "border_width": 2
+      },
+      "size": {
+         "width": 770,
+         "height": 480
+      },
+      "blur": {
+         "enabled": true
+      },
+      "compact_mode": {
+         "enabled": false
+      },
+      "layer_shell": {
+         "layer": "overlay",
+         "keyboard_interactivity": "exclusive",
+         "enabled": true
+      }
+   },
+   "keybinds": {
+      "action.copy": "control+shift+C",
+      "action.copy-name": "control+shift+.",
+      "action.copy-path": "control+shift+,",
+      "action.dangerous-remove": "control+shift+X",
+      "action.duplicate": "control+D",
+      "action.edit": "control+E",
+      "action.edit-secondary": "control+shift+E",
+      "action.move-down": "control+shift+ARROWDOWN",
+      "action.move-up": "control+shift+ARROWUP",
+      "action.new": "control+N",
+      "action.open": "control+O",
+      "action.pin": "control+shift+P",
+      "action.refresh": "control+R",
+      "action.remove": "control+X",
+      "action.save": "control+S",
+      "open-search-filter": "control+P",
+      "open-settings": "control+,",
+      "toggle-action-panel": "control+B"
+   },
+   "favorites": [
+      "clipboard:history"
+   ],
+   "fallbacks": [
+      "files:search"
+   ],
    "providers": {
+      "@Gelei/store.vicinae.bluetooth": {
+         "preferences": {
+            "connectionToggleable": true
+         }
+      },
       "@sovereign/store.vicinae.awww-switcher": {
          "preferences": {
-            "colorGenTool": "wallust",
-            "gridRows": "3",
-            "wallpaperPath": "/home/saatvik333/Pictures/Wallpapers/"
+            "wallpaperPath": "/home/saatvik333/Pictures/Wallpapers"
+         }
+      },
+      "applications": {
+         "preferences": {
+            "paths": [
+               "/home/saatvik333/.local/share/applications",
+               "/var/lib/flatpak/exports/share/applications",
+               "/usr/share/applications"
+            ]
          }
       }
    }

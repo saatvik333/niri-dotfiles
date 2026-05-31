@@ -1,3 +1,10 @@
+# Wallust-generated artifacts (regenerated on every theme change)
+tmux/colors.conf
+
+# Temporary review artifacts
+.full-review/
+.full-review-nvim-archived/
+
 # IDE & Editor Configurations
 Code/
 Cursor/
@@ -9,6 +16,7 @@ zed/
 acli/
 Antigravity/
 Postman/
+JetBrains/
 
 # Development Tools & Languages
 go/
@@ -16,15 +24,25 @@ gopls/
 flutter/
 fontforge/
 nextjs-nodejs/
+composer/
+solana/
+temporalio/
+.wrangler/
+browseruse/
+ngrok/
+opencode/opencode.json
 
 # Browsers
 google-chrome/
 .mozilla/
+BraveSoftware/
 
 # Communication
 discord/
 vesktop/
 Slack/
+slack-term/
+teams-for-linux/
 
 # Media & Entertainment
 spotify/
@@ -38,6 +56,7 @@ kew/kewlibrary
 # System & Utilities
 nwg-look/
 nwg-displays/
+terminal-slots/
 # systemd/
 balenaEtcher/
 yay/
@@ -86,6 +105,7 @@ pulse/
 # Electron Apps
 Electron/
 Notion/
+pritunl/
 
 *.env
 temp.md

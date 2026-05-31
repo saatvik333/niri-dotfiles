@@ -25,7 +25,8 @@ notify() {
 
 volume_up() {
   wpctl set-mute @DEFAULT_SINK@ 0
-  local output=$(wpctl get-volume @DEFAULT_SINK@)
+  local output
+  output=$(wpctl get-volume @DEFAULT_SINK@)
   read -r vol _ <<< "$(parse_volume "$output")"
   wpctl set-volume @DEFAULT_SINK@ "$(awk -v v="$vol" -v s="$VOLUME_STEP" -v m="$MAX_VOLUME" 'BEGIN {r=v/100+s; print (r>m)?m:r}')"
   output=$(wpctl get-volume @DEFAULT_SINK@)
@@ -35,37 +36,50 @@ volume_up() {
 
 volume_down() {
   wpctl set-volume @DEFAULT_SINK@ "${VOLUME_STEP}-"
-  local output=$(wpctl get-volume @DEFAULT_SINK@)
+  local output
+  output=$(wpctl get-volume @DEFAULT_SINK@)
   read -r vol _ <<< "$(parse_volume "$output")"
   notify "Volume" "volume" "$vol" "${vol}%"
 }
 
 volume_mute() {
   wpctl set-mute @DEFAULT_SINK@ toggle
-  local output=$(wpctl get-volume @DEFAULT_SINK@)
+  local output
+  output=$(wpctl get-volume @DEFAULT_SINK@)
   read -r vol muted <<< "$(parse_volume "$output")"
-  [[ "$muted" == "[MUTED]" ]] && notify "Volume Mute" "volume" 0 "Muted" || notify "Volume" "volume" "$vol" "${vol}%"
+  if [[ "$muted" == "[MUTED]" ]]; then
+    notify "Volume Mute" "volume" 0 "Muted"
+  else
+    notify "Volume" "volume" "$vol" "${vol}%"
+  fi
 }
 
 mic_mute() {
   wpctl set-mute @DEFAULT_SOURCE@ toggle
-  [[ "$(wpctl get-volume @DEFAULT_SOURCE@)" == *"[MUTED]"* ]] && notify "Microphone" "microphone" 0 "Muted" || notify "Microphone" "microphone" 100 "Unmuted"
+  if [[ "$(wpctl get-volume @DEFAULT_SOURCE@)" == *"[MUTED]"* ]]; then
+    notify "Microphone" "microphone" 0 "Muted"
+  else
+    notify "Microphone" "microphone" 100 "Unmuted"
+  fi
 }
 
 brightness_up() {
-  local max=$(brightnessctl max)
+  local max
+  max=$(brightnessctl max)
   brightnessctl -q set "${BRIGHTNESS_STEP}%+"
   notify "Brightness" "brightness" "$(($(brightnessctl get) * 100 / max))" ""
 }
 
 brightness_down() {
-  local max=$(brightnessctl max)
+  local max
+  max=$(brightnessctl max)
   brightnessctl -q set "${BRIGHTNESS_STEP}%-"
   notify "Brightness" "brightness" "$(($(brightnessctl get) * 100 / max))" ""
 }
 
 music_notify() {
-  local meta=$(playerctl metadata --format '{{title}}|{{artist}}' 2> /dev/null) || return
+  local meta
+  meta=$(playerctl metadata --format '{{title}}|{{artist}}' 2> /dev/null) || return
   exec notify-send --app-name="Music Player" --expire-time="$NOTIFICATION_TIMEOUT" \
     --transient --hint="string:x-dunst-stack-tag:music_notif" "${meta%%|*}" "${meta#*|}"
 }
@@ -81,4 +95,3 @@ case "${1:-}" in
     exit 1
     ;;
 esac
-

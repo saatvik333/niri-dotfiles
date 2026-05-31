@@ -17,18 +17,18 @@ accent = "{{color4}}"              # Standard ANSI Blue for primary actions
 accent_foreground = "{{background}}" # Text on accent should be dark for contrast
 background = "{{background}}"      # Main wallpaper-derived background
 foreground = "{{foreground}}"      # Main text color
-secondary_background = "{{color0 | lighten(0.05)}}" # Slightly elevated surface
-border = "{{color8 | darken(0.3)}}" # Subtler border than raw bright-black
+secondary_background = "{{background | lighten(0.05)}}" # Slightly elevated surface
+border = "{{background | lighten(0.15)}}" # Subtler border than raw bright-black
 
 # ============================================================================
 # Window-Specific Colors
 # ============================================================================
 
 [colors.main_window]
-border = "{{color8 | darken(0.3)}}"
+border = "{{background | lighten(0.15)}}"
 
 [colors.settings_window]
-border = "{{color8 | darken(0.3)}}"
+border = "{{background | lighten(0.15)}}"
 
 # ============================================================================
 # Accent Colors
@@ -65,7 +65,7 @@ visited = "{{color5 | darken(0.1)}}"
 # ============================================================================
 
 [colors.input]
-border = "{{color8 | darken(0.3)}}"
+border = "{{background | lighten(0.15)}}"
 border_focus = "{{color4}}"
 border_error = "{{color1}}"
 
@@ -74,9 +74,9 @@ border_error = "{{color1}}"
 # ============================================================================
 
 [colors.button.primary]
-background = "{{color0 | lighten(0.1)}}" # Explicitly elevated button background
+background = "{{background | lighten(0.1)}}" # Explicitly elevated button background
 foreground = "{{foreground}}"
-hover = { background = "{{color8 | darken(0.1)}}" } # Smoother hover state
+hover = { background = "{{background | lighten(0.2)}}" } # Smoother hover state
 focus = { outline = "{{color4}}" }
 
 # ============================================================================
@@ -84,21 +84,21 @@ focus = { outline = "{{color4}}" }
 # ============================================================================
 
 [colors.list.item.hover]
-background = "{{color8 | darken(0.2)}}" # darker hover for better text contrast
+background = "{{background | lighten(0.1)}}" # darker hover for better text contrast
 foreground = "{{foreground}}"
 
 [colors.list.item.selection]
-background = "{{color8}}"          # Selected item background
-foreground = "{{foreground}}"
-secondary_background = "{{color8}}"
-secondary_foreground = "{{foreground}}"
+background = "{{color4}}"          # Selected item background
+foreground = "{{background}}"
+secondary_background = "{{color4}}"
+secondary_foreground = "{{background}}"
 
 # ============================================================================
 # Grid Items
 # ============================================================================
 
 [colors.grid.item]
-background = "{{color0 | lighten(0.05)}}"
+background = "{{background | lighten(0.05)}}"
 hover = { outline = "{{foreground | darken(0.2)}}" }
 selection = { outline = "{{color4}}" }
 
@@ -107,7 +107,7 @@ selection = { outline = "{{color4}}" }
 # ============================================================================
 
 [colors.scrollbars]
-background = "{{color0}}"
+background = "{{background}}"
 
 # ============================================================================
 # Loading Indicators

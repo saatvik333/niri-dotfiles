@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily auto-update for Sevens Shell
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

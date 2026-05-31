@@ -12,14 +12,14 @@ find "$WALL_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' 
 
 # Clean orphaned cache files
 if [ -f "$CACHE_INDEX" ]; then
-    while read -r cached_path; do
-        if [ ! -f "$cached_path" ]; then
-            rel_path="${cached_path#$WALL_DIR/}"
-            cache_name="${rel_path//\//_}"
-            cache_name="${cache_name%.*}.jpg"
-            rm -f "$CACHE_DIR/$cache_name"
-        fi
-    done < "$CACHE_INDEX"
+	    while read -r cached_path; do
+	        if [ ! -f "$cached_path" ]; then
+	            rel_path="${cached_path#"$WALL_DIR"/}"
+	            cache_name="${rel_path//\//_}"
+	            cache_name="${cache_name%.*}.jpg"
+	            rm -f "$CACHE_DIR/$cache_name"
+	        fi
+	    done < "$CACHE_INDEX"
 fi
 
 # Generate thumbnails with validation
@@ -27,21 +27,21 @@ progress_file=$(mktemp)
 touch "$progress_file"
 job_count=0
 
-while read -r img; do
-    rel_path="${img#$WALL_DIR/}"
-    cache_name="${rel_path//\//_}"
-    cache_name="${cache_name%.*}.jpg"
-    cache_file="$CACHE_DIR/$cache_name"
+	while read -r img; do
+	    rel_path="${img#"$WALL_DIR"/}"
+	    cache_name="${rel_path//\//_}"
+	    cache_name="${cache_name%.*}.jpg"
+	    cache_file="$CACHE_DIR/$cache_name"
     
     [ -f "$cache_file" ] && continue
     
-    (
-        if [[ "$img" =~ \.(gif|GIF)$ ]]; then
-            magick "$img[0]" -strip -thumbnail 330x540^ -gravity center -extent 330x540 -quality 80 +repage "$cache_file" 2>/dev/null
-        else
-            magick "$img" -strip -thumbnail 330x540^ -gravity center -extent 330x540 -quality 80 +repage "$cache_file" 2>/dev/null
-        fi
-        [ -f "$cache_file" ] && echo "1" >> "$progress_file"
+	    (
+	        if [[ "$img" =~ \.(gif|GIF)$ ]]; then
+	            magick "${img}[0]" -strip -thumbnail 330x540^ -gravity center -extent 330x540 -quality 80 +repage "$cache_file" 2>/dev/null
+	        else
+	            magick "$img" -strip -thumbnail 330x540^ -gravity center -extent 330x540 -quality 80 +repage "$cache_file" 2>/dev/null
+	        fi
+	        [ -f "$cache_file" ] && echo "1" >> "$progress_file"
     ) &
     
     ((job_count++))
@@ -53,7 +53,7 @@ done < "$current_index"
 wait
 
 total_generated=$(wc -l < "$progress_file" 2>/dev/null || echo 0)
-[ $total_generated -gt 0 ] && echo "Generated $total_generated thumbnails" || echo "Cache up to date"
+[ "$total_generated" -gt 0 ] && echo "Generated $total_generated thumbnails" || echo "Cache up to date"
 rm -f "$progress_file"
 
 # Update cache index
@@ -62,7 +62,7 @@ mv "$current_index" "$CACHE_INDEX"
 # Build rofi list
 rofi_input=$(mktemp)
 while read -r img; do
-    rel_path="${img#$WALL_DIR/}"
+    rel_path="${img#"$WALL_DIR"/}"
     cache_name="${rel_path//\//_}"
     cache_name="${cache_name%.*}.jpg"
     cache_file="$CACHE_DIR/$cache_name"
@@ -72,7 +72,7 @@ done < "$CACHE_INDEX" > "$rofi_input"
 
 # Show rofi and get selection
 selected=$(rofi -dmenu -show-icons -config "$HOME/.config/rofi/bgselector/style.rasi" < "$rofi_input")
-rm "$rofi_input"
+rm -f "$rofi_input"
 
 # Apply wallpaper
 if [ -n "$selected" ]; then

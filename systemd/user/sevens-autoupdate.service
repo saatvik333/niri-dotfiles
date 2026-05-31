@@ -1,0 +1,14 @@
+[Unit]
+Description=Sevens Shell auto-update
+After=network-online.target
+Wants=network-online.target
+# Retry up to 3 times within 15 min if the run fails (e.g. network-online.target
+# fired before mirrors became reachable, transient DNS/mirror errors).
+StartLimitIntervalSec=15min
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/sevens-autoupdate.sh
+Restart=on-failure
+RestartSec=2min

@@ -7,28 +7,61 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "hide_hidden": false,
+  },
+  "file_scan_inclusions": [".env*", "docker-compose.*.yml"],
   "agent": {
-    "default_profile": "write",
-    "always_allow_tool_actions": true,
-    "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro"
-    },
-    "model_parameters": []
+    "favorite_models": [],
+    "notify_when_agent_waiting": "all_screens",
+    "model_parameters": [],
   },
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "icon_theme": "Material Icon Theme",
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
-  "ui_font_family": ".SystemUIFont",
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
-  "theme": {
-    "mode": "dark",
-    "light": "Catppuccin Latte",
-    "dark": "Wallust"
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false,
   },
-  "title_bar": {
-    "show": "hide_in_full_screen"
+  "session": {
+    "trust_all_worktrees": true,
   },
-  "rounded_selection": false,
-  "vim_mode": true
+  "cli_default_open_behavior": "new_window",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+    "gemini": {
+      "default_mode": "autoEdit",
+      "type": "registry",
+    },
+    "opencode": {
+      "type": "registry",
+    },
+  },
+  "terminal": {
+    "font_size": 15.0,
+    "font_family": "JetBrainsMono Nerd Font",
+  },
+  "vim": {
+    "use_smartcase_find": true,
+  },
+  "scrollbar": {
+    "axes": {
+      "horizontal": false,
+      "vertical": false,
+    },
+  },
+  "relative_line_numbers": "enabled",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "vim_mode": true,
+  "cursor_shape": "bar",
+  "ui_font_family": "DejaVu Sans",
+  "window_decorations": "server",
+  "ui_font_size": 15.0,
+  "buffer_font_size": 16.0,
+  "theme": "Wallust",
 }

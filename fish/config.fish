@@ -71,6 +71,49 @@ bind '$' __history_previous_command_arguments
 ##################
 ### Functions  ###
 ##################
+# CS50-style make for C++
+function csmake
+    set binary output
+
+    if test (count $argv) -eq 0
+        set cpp_files (ls *.cpp 2>/dev/null)
+        if test -n "$cpp_files"
+            set filename $cpp_files[1]
+        else
+            echo "No .cpp files found"
+            return 1
+        end
+    else
+        set name $argv[1]
+        if string match -r '\.cpp$' $name >/dev/null
+            set filename $name
+        else
+            set filename "$name.cpp"
+        end
+    end
+
+    if not test -f $filename
+        echo "File $filename does not exist"
+        return 1
+    end
+
+    g++ -o $binary $filename -std=c++17 -Wall -Wextra
+    if test $status -eq 0
+        echo "Compiled $filename -> $binary"
+        printf "Run %s? [y/N] " $binary
+        read -l response
+        if string match -ri '^y$' $response
+            ./$binary
+        end
+    end
+end
+
+# Run any application fully detached from the terminal
+function runbg
+    nohup $argv </dev/null &>/dev/null &
+    disown
+end
+
 # Better history
 function history
     builtin history --show-time='%F %T '
@@ -95,6 +138,15 @@ end
 # mkcd DIR
 function mkcd
     mkdir -p $argv[1]; and cd $argv[1]
+end
+
+# Copy absolute path to clipboard
+function cpath
+    if test (count $argv) -eq 0
+        pwd | wl-copy
+    else
+        realpath $argv[1] | wl-copy
+    end
 end
 
 # Extract archives
@@ -145,6 +197,7 @@ alias l.='eza -a | grep -e "^\."'
 # System helpers
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias adbconnect="$HOME/.config/scripts/adbconnect.sh"
 alias tarnow='tar -acf '
 alias untar='tar -zxvf '
 alias wget='wget -c '
@@ -189,32 +242,81 @@ alias gpull='git pull'
 
 # System control
 alias wifi='nmtui'
-alias install='yay -S'
-alias update='yay -Syu'
-alias search='yay -Ss'
-alias lsearch='yay -Qs'
-alias remove='yay -Rns'
+alias install='paru -S'
+alias update='paru -Syu'
+alias search='paru -Ss'
+alias lsearch='paru -Qs'
+alias remove='paru -Rns'
 alias shutdown='systemctl poweroff'
+
+# tmux shortcuts
+alias tl='tmux ls'                # list sessions
+alias tn='tmux new -s'            # tn <name> → new session "<name>"
+alias tk='tmux kill-session -t'   # tk <name> → kill that session
+alias tka='tmux kill-server'      # nuke server (all sessions)
+
+function t --description 'tmux: t = attach last/create; t <name> = attach or create that session'
+    if test (count $argv) -eq 0
+        if tmux has-session 2>/dev/null
+            tmux attach
+        else
+            tmux new-session
+        end
+    else
+        tmux attach -t $argv[1] 2>/dev/null; or tmux new-session -s $argv[1]
+    end
+end
+
+function tsave --description 'tmux-resurrect: save current session state'
+    if not tmux has-session 2>/dev/null
+        echo "no tmux server running" >&2
+        return 1
+    end
+    tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+    echo "saved → $(readlink ~/.local/share/tmux/resurrect/last)"
+end
+
+function trestore --description 'tmux-resurrect: restore last saved state and attach'
+    set --local bootstrap 0
+    if not tmux has-session 2>/dev/null
+        tmux new-session -d -s _restore
+        set bootstrap 1
+    end
+    tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh
+    # drop the placeholder if real sessions came back from the restore
+    if test $bootstrap -eq 1; and test (tmux list-sessions 2>/dev/null | count) -gt 1
+        tmux kill-session -t _restore 2>/dev/null
+    end
+    tmux attach
+end
 
 ##################
 ### Environment ###
 ##################
 set -gx SHELL_CONFIG_DIR $HOME/.config
-set -gx GOPATH $HOME/go
-set -gx PATH $GOPATH/bin $PATH
-set -gx CARGO_HOME $HOME/.cargo
-set -gx PATH $CARGO_HOME/bin $PATH
-set -gx ANDROID_HOME $HOME/Android
-set -gx ANDROID_SDK_ROOT $ANDROID_HOME/sdk
-set -gx PATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $PATH
-set -gx PATH $ANDROID_SDK_ROOT/platform-tools $PATH
-set -gx FLUTTER_HOME $ANDROID_HOME/flutter
-set -gx PATH $FLUTTER_HOME/bin $PATH
 set -gx CHROME_EXECUTABLE /usr/bin/google-chrome-stable
+set -gx ANDROID_SDK_ROOT /home/saatvik333/Android/sdk
+set -gx ANDROID_HOME /home/saatvik333/Android/sdk
+
+set -gx PATH \
+    /home/saatvik333/Android/flutter/bin \
+    /home/saatvik333/Android/sdk/cmdline-tools/latest/bin \
+    /home/saatvik333/Android/sdk/platform-tools \
+    /home/saatvik333/Android/sdk/emulator \
+    /opt/node/bin \
+    /home/saatvik333/.cargo/bin \
+    /home/saatvik333/go/bin \
+    /home/saatvik333/.opencode/bin \
+    /home/saatvik333/.spicetify \
+    /home/saatvik333/.local/bin \
+    /home/saatvik333/.browser-use/bin \
+    /usr/local/sbin /usr/local/bin /usr/bin /bin \
+    /home/saatvik333/.pub-cache/bin
 
 string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path fish)
+alias CC='claude --allow-dangerously-skip-permissions'
 
-# opencode
-fish_add_path /home/saatvik333/.opencode/bin
-
-fish_add_path /home/saatvik333/.spicetify
+# tmux with UTF-8 (required for nerd font icons)
+function tmux
+    command tmux -u $argv
+end

@@ -1,0 +1,225 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "bg": "{{background}}",
+    "fg": "{{foreground}}",
+    "c0": "{{color0}}",
+    "c1": "{{color1}}",
+    "c2": "{{color2}}",
+    "c3": "{{color3}}",
+    "c4": "{{color4}}",
+    "c5": "{{color5}}",
+    "c6": "{{color6}}",
+    "c7": "{{color7}}",
+    "c8": "{{color8}}",
+    "c9": "{{color9}}",
+    "c10": "{{color10}}",
+    "c11": "{{color11}}",
+    "c12": "{{color12}}",
+    "c13": "{{color13}}",
+    "c14": "{{color14}}",
+    "c15": "{{color15}}"
+  },
+  "theme": {
+    "primary": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "secondary": {
+      "dark": "c14",
+      "light": "c6"
+    },
+    "accent": {
+      "dark": "c13",
+      "light": "c5"
+    },
+    "error": {
+      "dark": "c9",
+      "light": "c1"
+    },
+    "warning": {
+      "dark": "c11",
+      "light": "c3"
+    },
+    "success": {
+      "dark": "c10",
+      "light": "c2"
+    },
+    "info": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "text": {
+      "dark": "fg",
+      "light": "c0"
+    },
+    "textMuted": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "background": {
+      "dark": "bg",
+      "light": "c15"
+    },
+    "backgroundPanel": {
+      "dark": "bg",
+      "light": "c7"
+    },
+    "backgroundElement": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "border": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "borderActive": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "borderSubtle": {
+      "dark": "c0",
+      "light": "c7"
+    },
+    "diffAdded": {
+      "dark": "c10",
+      "light": "c2"
+    },
+    "diffRemoved": {
+      "dark": "c9",
+      "light": "c1"
+    },
+    "diffContext": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "diffHunkHeader": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "diffHighlightAdded": {
+      "dark": "c2",
+      "light": "c2"
+    },
+    "diffHighlightRemoved": {
+      "dark": "c1",
+      "light": "c1"
+    },
+    "diffAddedBg": {
+      "dark": "c0",
+      "light": "c7"
+    },
+    "diffRemovedBg": {
+      "dark": "c0",
+      "light": "c7"
+    },
+    "diffContextBg": {
+      "dark": "bg",
+      "light": "c15"
+    },
+    "diffLineNumber": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "c0",
+      "light": "c7"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "c0",
+      "light": "c7"
+    },
+    "markdownText": {
+      "dark": "fg",
+      "light": "c0"
+    },
+    "markdownHeading": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "markdownLink": {
+      "dark": "c14",
+      "light": "c6"
+    },
+    "markdownLinkText": {
+      "dark": "c13",
+      "light": "c5"
+    },
+    "markdownCode": {
+      "dark": "c10",
+      "light": "c2"
+    },
+    "markdownBlockQuote": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "markdownEmph": {
+      "dark": "c11",
+      "light": "c3"
+    },
+    "markdownStrong": {
+      "dark": "c3",
+      "light": "c3"
+    },
+    "markdownHorizontalRule": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "markdownListItem": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "markdownListEnumeration": {
+      "dark": "c13",
+      "light": "c5"
+    },
+    "markdownImage": {
+      "dark": "c14",
+      "light": "c6"
+    },
+    "markdownImageText": {
+      "dark": "c13",
+      "light": "c5"
+    },
+    "markdownCodeBlock": {
+      "dark": "fg",
+      "light": "c0"
+    },
+    "syntaxComment": {
+      "dark": "c8",
+      "light": "c7"
+    },
+    "syntaxKeyword": {
+      "dark": "c5",
+      "light": "c5"
+    },
+    "syntaxFunction": {
+      "dark": "c12",
+      "light": "c4"
+    },
+    "syntaxVariable": {
+      "dark": "c14",
+      "light": "c6"
+    },
+    "syntaxString": {
+      "dark": "c10",
+      "light": "c2"
+    },
+    "syntaxNumber": {
+      "dark": "c11",
+      "light": "c3"
+    },
+    "syntaxType": {
+      "dark": "c13",
+      "light": "c5"
+    },
+    "syntaxOperator": {
+      "dark": "c9",
+      "light": "c1"
+    },
+    "syntaxPunctuation": {
+      "dark": "fg",
+      "light": "c0"
+    }
+  }
+}

@@ -6,6 +6,7 @@ sleep 0.8 # let awww set the wallpaper
 
 # Source common utilities if available
 if [[ -f "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh" ]]; then
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh"
 else
   # Fallback logging functions if common.sh is not available
@@ -54,9 +55,6 @@ else
 fi
 
 # --- Configuration ---
-readonly SCRIPT_NAME="${0##*/}"
-readonly WALLPAPERS_DIR="$HOME/Pictures/Wallpapers"
-readonly DEFAULT_GTK_THEME="Colloid-Dark"
 readonly DEFAULT_ICON_THEME="Colloid-Dark"
 readonly THEME_STATE_FILE="$HOME/.cache/theme-sync-state"
 
@@ -603,12 +601,12 @@ run_wallust_theme() {
   fi
 }
 
-update_niri_config() {
-  local -r niri_config_file="$HOME/.config/niri/config.kdl"
+update_niri_layout() {
+  local -r niri_layout_file="$HOME/.config/niri/layout.kdl"
   local -r wallust_colors_file="$HOME/.cache/wallust/colors.json"
 
   if [[ ! -f "$wallust_colors_file" ]]; then
-    log_warn "Wallust color cache not found, skipping niri config update"
+    log_warn "Wallust color cache not found, skipping niri layout update"
     return
   fi
 
@@ -621,20 +619,20 @@ update_niri_config() {
     return
   fi
 
-  log_info "Updating niri config with active color: $active_color and inactive color: $inactive_color"
+  log_info "Updating niri layout with active color: $active_color and inactive color: $inactive_color"
 
   # Configure border colors
-  sed -i "/border {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_config_file"
-  sed -i "/border {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_config_file"
+  sed -i "/border {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_layout_file"
+  sed -i "/border {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_layout_file"
 
   # Configure tab-indicator colors
-  sed -i "/tab-indicator {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_config_file"
-  sed -i "/tab-indicator {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_config_file"
+  sed -i "/tab-indicator {/,/}/ s/active-color \".*\"/active-color \"$active_color\"/" "$niri_layout_file"
+  sed -i "/tab-indicator {/,/}/ s/inactive-color \".*\"/inactive-color \"$inactive_color\"/" "$niri_layout_file"
 
   # Configure insert-hint color
-  sed -i "/insert-hint {/,/}/ s/color \".*\"/color \"$active_color\"/" "$niri_config_file"
+  sed -i "/insert-hint {/,/}/ s/color \".*\"/color \"$active_color\"/" "$niri_layout_file"
 
-  log_success "Niri config updated successfully"
+  log_success "Niri layout updated successfully"
 }
 
 update_vscode_theme() {
@@ -710,17 +708,19 @@ main() {
     set_gtk_theme "$gtk_theme" "$wallpaper_variation" "$icon_theme"
     set_icon_theme "$icon_theme"
     run_wallust_theme "$wallust_theme" "$wallpaper_path"
-    update_niri_config
-    vicinae theme set wallust
-    if command -v makoctl > /dev/null 2>&1; then
-      makoctl reload 2> /dev/null || log_warn "Failed to reload mako"
-    else
-      log_warn "makoctl not available, skipping notification daemon reload"
-    fi
-    if pgrep -x spotify > /dev/null; then
-      spicetify apply
-    else
-      spicetify apply -n
+    update_niri_layout
+    timeout 5 vicinae theme set wallust 2>/dev/null || log_warn "vicinae theme set timed out or failed"
+    if tmux list-sessions &>/dev/null 2>&1; then
+      # Lint: only `set -g` / `setw -g` directives, comments, blanks allowed.
+      # A hostile wallust template could otherwise inject arbitrary tmux commands
+      # (run-shell, bind, default-command) that would execute on source-file.
+      if grep -Ev '^(\s*#|\s*$|set(w)? -g\s)' "$HOME/.config/tmux/colors.conf" > /dev/null 2>&1; then
+        log_warn "tmux/colors.conf contains non-set directives — refusing to reload"
+      else
+        # Source colors.conf only (not full tmux.conf) — avoids re-running TPM init
+        # and unrelated bind changes; one source-file updates server-wide options.
+        tmux source-file "$HOME/.config/tmux/colors.conf" 2>/dev/null || log_warn "tmux reload failed"
+      fi
     fi
     save_theme_state "$detected_theme" "$wallpaper_variation"
 

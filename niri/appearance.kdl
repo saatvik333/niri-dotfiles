@@ -1,0 +1,18 @@
+// ---------------------------------------------------------------------------
+// UI / UX
+// ---------------------------------------------------------------------------
+hotkey-overlay {
+    skip-at-startup
+}
+
+cursor {
+    hide-when-typing
+    hide-after-inactive-ms 5000
+}
+
+overview {
+    backdrop-color "#1E1E2E"
+    workspace-shadow {
+        off
+    }
+}

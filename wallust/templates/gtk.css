@@ -1,17 +1,31 @@
-@define-color accent_color {{color2 | darken(0.1)}}
-@define-color accent_fg_color {{color4 | lighten(0.1)}};
-@define-color accent_bg_color {{color2 | darken(0.1)}}
-@define-color window_bg_color {{color0 | darken(0.1)}};
-@define-color window_fg_color {{color7 | lighten(0.1)}};
-@define-color headerbar_bg_color {{color0 | darken(0.1)}};
-@define-color headerbar_fg_color {{color7 | lighten(0.1)}};
-@define-color popover_bg_color {{color0 | darken(0.1)}};
-@define-color popover_fg_color {{color7 | lighten(0.1)}};
-@define-color view_bg_color {{color0}}
-@define-color view_fg_color {{color7 | lighten(0.1)}};
-@define-color card_bg_color {{color0}}
-@define-color card_fg_color {{color7 | lighten(0.1)}};
+@define-color accent_color {{color4}};
+@define-color accent_fg_color {{foreground}};
+@define-color accent_bg_color {{color4}};
+@define-color window_bg_color {{background}};
+@define-color window_fg_color {{foreground}};
+@define-color headerbar_bg_color {{background}};
+@define-color headerbar_fg_color {{foreground}};
+@define-color popover_bg_color {{background}};
+@define-color popover_fg_color {{foreground}};
+@define-color view_bg_color {{background}};
+@define-color view_fg_color {{foreground}};
+@define-color card_bg_color {{background}};
+@define-color card_fg_color {{foreground}};
 @define-color sidebar_bg_color @window_bg_color;
 @define-color sidebar_fg_color @window_fg_color;
 @define-color sidebar_border_color @window_bg_color;
 @define-color sidebar_backdrop_color @window_bg_color;
+
+/* Legacy / Standard theme mappings */
+@define-color theme_bg_color @window_bg_color;
+@define-color theme_fg_color @window_fg_color;
+@define-color theme_base_color @view_bg_color;
+@define-color theme_text_color @view_fg_color;
+@define-color theme_selected_bg_color @accent_bg_color;
+@define-color theme_selected_fg_color @accent_fg_color;
+@define-color theme_unfocused_bg_color @window_bg_color;
+@define-color theme_unfocused_fg_color @window_fg_color;
+@define-color theme_unfocused_base_color @view_bg_color;
+@define-color theme_unfocused_text_color @view_fg_color;
+@define-color theme_unfocused_selected_bg_color @accent_bg_color;
+@define-color theme_unfocused_selected_fg_color @accent_fg_color;

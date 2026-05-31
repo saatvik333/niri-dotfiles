@@ -1,0 +1,19 @@
+// ---------------------------------------------------------------------------
+// Input
+// ---------------------------------------------------------------------------
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            options "caps:escape,altwin:swap_alt_win"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    focus-follows-mouse
+    workspace-auto-back-and-forth
+}

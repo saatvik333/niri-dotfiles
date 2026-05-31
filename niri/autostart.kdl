@@ -1,0 +1,9 @@
+// ---------------------------------------------------------------------------
+// Autostart
+// ---------------------------------------------------------------------------
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+spawn-at-startup "awww-daemon"
+spawn-sh-at-startup "voxtype daemon"
+spawn-sh-at-startup "qs -p /home/saatvik333/Codes/projects/sevens-shell/src/shell.qml"
+spawn-sh-at-startup "vicinae server &"
+spawn-at-startup "systemctl" "--user" "import-environment" "SSH_AUTH_SOCK"
