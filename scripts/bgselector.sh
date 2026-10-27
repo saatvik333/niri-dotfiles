@@ -26,8 +26,9 @@ fi
 progress_file=$(mktemp)
 touch "$progress_file"
 
-# Use all available CPU cores for parallel processing
+# Limit max parallel jobs to prevent system freeze during thumbnail generation
 max_jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+(( max_jobs > 2 )) && max_jobs=2
 job_count=0
 
 # Create list of images that need thumbnails
@@ -72,7 +73,7 @@ export -f generate_thumbnail
 
 # Use xargs for efficient parallel execution if available, fallback to bash loop
 if command -v xargs >/dev/null 2>&1 && [ -s "$to_generate" ]; then
-    cat "$to_generate" | xargs -P "$max_jobs" -I {} bash -c \
+    cat "$to_generate" | nice -n 19 xargs -P "$max_jobs" -I {} bash -c \
         'generate_thumbnail "$1" "$2" "$3" "$4"' _ {} "$CACHE_DIR" "$WALL_DIR" "$progress_file"
 elif [ -s "$to_generate" ]; then
     # Fallback: manual parallel with all cores

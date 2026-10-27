@@ -66,11 +66,8 @@
   },
   "clock": {
     "interval": 1,
-    "format": "{:%H
-%M}",
-    "format-alt": "{:%d
-%m
-%y}",
+    "format": "{:%H\n%M}",
+    "format-alt": "{:%d\n%m\n%y}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>"
 },
 "mpris": {
@@ -98,7 +95,7 @@
   "modules": [
     {
       "type": "screenshare",
-      "tooltip": false,
+      "tooltip": false
     }
   ],
   "ignore": [
